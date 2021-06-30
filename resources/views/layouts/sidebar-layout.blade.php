@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <form action="" class="nav-link p-0 m-0">
+                        <form action="{{ route('Logout') }}" method="POST" class="nav-link p-0 m-0">
                             @csrf
                             <button class="nav-link text-danger text-start btn-block">
                                 <i class="nav-icon fas fa-power-off"></i>
@@ -76,12 +76,6 @@
                 </li>
             </li>
             <div class="dropdown-divider bg-light"></div>
-            {{-- <li class="nav-item" id="roles">
-                <a href="{{ route('Role Jabatan') }}" id="roles-link" class="nav-link">
-                    <i class="nav-icon fas fa-cogs"></i>
-                    <p>Roles</p>
-                </a>
-            </li> --}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-info-circle"></i>

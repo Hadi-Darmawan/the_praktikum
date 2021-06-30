@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 // Authenticate Route
 
-    // Login
+    // Login & Logout
     Route::get('login', 'Auth\LoginController@loginForm')->name('Login Form');
     Route::post('login', 'Auth\LoginController@login')->name('Login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('Logout');
 
     // Profile Route
     Route::get('profile', 'Auth\ProfileController@profile')->name('Profile');

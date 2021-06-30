@@ -112,10 +112,12 @@
                             <div class="form-group row">
                                 <label for="role" class="col-sm-12 col-md-2 col-form-label">Role</label>
                                 <div class="col-sm-12 col-md-10 my-auto">
-                                    <div class="form-control">
-                                        @foreach ($detail_role as $data)
-                                            {{$data->role->nama_role}}
-                                        @endforeach
+                                    <div class="card-body border rounded">
+                                        <ul class="list-unstyled m-0">
+                                            @foreach ($detail_role as $data)
+                                                <li>{{ $loop->iteration}}. {{$data->role->nama_role}}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

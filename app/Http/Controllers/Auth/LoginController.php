@@ -16,9 +16,20 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if(Auth::guard()->attempt(['username' => $request->username, 'password' => $request->password])){
-            return redirect()->intended('dashboard');
+            if (auth()->guard()->user()->status == 'Tidak Aktif') {
+                Auth::guard()->logout();
+                return redirect()->back()->with('message', 'Akun Anda Telah Dinonaktifkan');
+            } else {
+                return redirect()->intended('dashboard');
+            }
         } else {
             return redirect()->back()->with('message', 'Username atau Password Anda Salah');
         }
+    }
+
+    public function logout()
+    {
+        Auth::guard()->logout();
+        return redirect()->route('Login Form');
     }
 }

@@ -15,6 +15,7 @@ class Login extends Authenticatable
         'username',
         'password',
         'jabatan',
+        'status',
     ];
 
     protected $hidden = [

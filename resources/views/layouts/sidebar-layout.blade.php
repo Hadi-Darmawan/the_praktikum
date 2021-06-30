@@ -44,7 +44,38 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="nav nav-treeview">
+                <li class="nav-item" id="account-management">
+                    <a href="#" class="nav-link" id="account-management-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            Account Management
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ms-3">
+                        <li class="nav-item">
+                            <a href="{{ route('Account Data') }}" id="account-data" class="nav-link">
+                                <i class="fas fa-user-friends nav-icon"></i>
+                                <p>Account Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('Add Account') }}" id="add-account" class="nav-link">
+                                <i class="fas fa-user-plus nav-icon"></i>
+                                <p>Add Account</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </li>
             <div class="dropdown-divider bg-light"></div>
+            <li class="nav-item" id="roles">
+                <a href="" id="roles-link" class="nav-link">
+                    <i class="nav-icon fas fa-cogs"></i>
+                    <p>Roles</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-info-circle"></i>

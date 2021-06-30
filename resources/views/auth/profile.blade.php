@@ -59,7 +59,7 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="account">
-                                <form action="{{ route('Update Account', auth()->guard()->user()->detailLogin->id) }}" method="POST" class="form-horizontal needs-validation" novalidate>
+                                <form action="{{ route('Update Profile', auth()->guard()->user()->detailLogin->id) }}" method="POST" class="form-horizontal needs-validation" novalidate>
                                     @csrf
                                     <div class="form-group row">
                                         <label for="username" class="col-sm-12 col-md-2 col-form-label">Username</label>
@@ -238,7 +238,6 @@
 
 @push('js')
     <script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
     @if($message = Session::get('success'))
         <script>
@@ -278,21 +277,6 @@
             $('#admin-authentication').addClass('menu-is-opening menu-open');
             $('#authentication').addClass('active');
             $('#admin-profile').addClass('active');
-        });
-
-        $(function () {
-            bsCustomFileInput.init();
-        });
-
-        $('#img_preview').hide();
-
-        $('#inputProfile').on('change', function(event){
-            var img = document.getElementById('img_preview');
-            img.src = URL.createObjectURL(event.target.files[0]);
-            img.onload = function() {
-                URL.revokeObjectURL(img.src) // free memory
-            }
-            $('#img_preview').show();
         });
 
         function oldPasswordVisibility() {

@@ -20,7 +20,7 @@ class ProfileController extends Controller
     public function profile()
     {
         $detail_role = DetailRole::where('id_login', auth()->guard()->user()->id)->get();
-        return view('auth.profile.profile', compact('detail_role'));
+        return view('auth.profile', compact('detail_role'));
     }
 
     public function updateAccount(Request $request, DetailLogin $detailLogin)
@@ -90,7 +90,7 @@ class ProfileController extends Controller
         if (Hash::check($request->password_lama, $login->password)) {
             try {
                 DB::beginTransaction();
-                    $update_password = Login::where('id', $login->id)->update([
+                    Login::where('id', $login->id)->update([
                         'password' => bcrypt($request->password)
                     ]);
                 DB::commit();

@@ -110,14 +110,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="jabatan" class="col-sm-12 col-md-2 col-form-label">Jabatan</label>
-                                <div class="col-sm-12 col-md-10 my-auto">
-                                    <div class="form-control">
-                                        {{ $login->jabatan }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label for="role" class="col-sm-12 col-md-2 col-form-label">Role</label>
                                 <div class="col-sm-12 col-md-10 my-auto">
                                     <div class="form-control">
@@ -183,4 +175,3 @@
         });
     </script>
 @endpush
-

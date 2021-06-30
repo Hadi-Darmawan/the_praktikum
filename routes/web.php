@@ -33,18 +33,29 @@ Route::get('/', function () {
 // End Route
 
 
-// Account Management Route
-
-    Route::get('account/all-data', 'AccountManagement\AccountController@accountData')->name('Account Data');
-    Route::get('account/edit/{login}', 'AccountManagement\AccountController@editAccount')->name('Edit Account');
-    Route::post('account/update/{login}', 'AccountManagement\AccountController@updateAccount')->name('Update Account');
-    Route::post('account/disable/{id}', 'AccountManagement\AccountController@accountStatus')->name('Account Status');
-    Route::get('account/new', 'AccountManagement\AccountController@addAccount')->name('Add Account');
-    Route::post('account/save', 'AccountManagement\AccountController@storeAccount')->name('Save Account');
-
-// End Route
-
-
 
 // Dashboard Route
 Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashboard');
+
+
+
+// Account Management Route
+
+    // All Account
+    Route::get('account/all-data', 'AccountManagement\AccountController@accountData')->name('Account Data');
+
+    // Edit Account
+    Route::get('account/edit/{login}', 'AccountManagement\AccountController@editAccount')->name('Edit Account');
+    Route::post('account/update/{login}', 'AccountManagement\AccountController@updateAccount')->name('Update Account');
+    Route::post('account/disable/{id}', 'AccountManagement\AccountController@accountStatus')->name('Account Status');
+
+    // Add Account
+    Route::get('account/new', 'AccountManagement\AccountController@addAccount')->name('Add Account');
+    Route::post('account/save', 'AccountManagement\AccountController@storeAccount')->name('Save Account');
+
+    // Roles
+    Route::get('roles/all-data', 'AccountManagement\RolesController@roleJabatanData')->name('Roles Data');
+    Route::get('roles/edit/{login}', 'AccountManagement\RolesController@editAccountRoles')->name('Edit Account Roles');
+    Route::post('roles/update/{login}', 'AccountManagement\RolesController@updateAccountRoles')->name('Update Account Roles');
+
+// End Route

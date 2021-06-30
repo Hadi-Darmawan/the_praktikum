@@ -66,16 +66,22 @@
                                 <p>Add Account</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('Roles Data') }}" id="roles" class="nav-link">
+                                <i class="fas fa-user-tag nav-icon"></i>
+                                <p>Roles</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </li>
             <div class="dropdown-divider bg-light"></div>
-            <li class="nav-item" id="roles">
-                <a href="" id="roles-link" class="nav-link">
+            {{-- <li class="nav-item" id="roles">
+                <a href="{{ route('Role Jabatan') }}" id="roles-link" class="nav-link">
                     <i class="nav-icon fas fa-cogs"></i>
                     <p>Roles</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-info-circle"></i>

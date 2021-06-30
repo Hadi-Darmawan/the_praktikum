@@ -6,18 +6,6 @@
     <link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <style>
-        .image {
-            width: 200px;
-            height: 200px;
-            overflow: hidden;
-        }
-        .image img {
-            object-fit: cover;
-            width: 200px;
-            height: 200px;
-        }
-    </style>
 @endpush
 
 @section('content')
@@ -103,29 +91,6 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="jabatan" class="col-sm-12 col-md-2 col-form-label">Jabatan</label>
-                                <div class="col-sm-12 col-md-10 my-auto">
-                                    <select id="jabatan" class="select2 jabatan form-control @error('jabatan') is-invalid @enderror" name="jabatan" data-placeholder="Pilih jabatan" required style="width: 100%">
-                                        <option selected></option>
-                                        @foreach ($role as $data)
-                                            <option value="{{ $data->nama_role }}">{{ $data->nama_role }}</option>
-                                        @endforeach
-                                    </select>
-                                    {{-- @error('jabatan')
-                                        <div class="invalid-feedback text-start">
-                                            {{ $message }}
-                                        </div>
-                                    @else
-                                        <div class="invalid-feedback">
-                                            Jabatan wajib dipilih
-                                        </div>
-                                    @enderror --}}
-                                    <div class="invalid-feedback">
-                                        Jabatan wajib dipilih
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'All Account')
+@section('title', 'Data Dosen')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -9,12 +9,12 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Manajemen Akun</h1>
+        <h1 class="h3 col-lg-auto text-center text-md-start">Data Tambahan</h1>
         <div class="col-auto ml-auto text-right mt-n1">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Daftar akun</li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Dosen</li>
                 </ol>
             </nav>
         </div>
@@ -25,38 +25,46 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-12 my-auto">
-                                <h3 class="card-title my-auto">Daftar Akun</h3>
+                            <div class="col-6 my-auto">
+                                <h3 class="card-title my-auto">Daftar Data Dosen</h3>
+                            </div>
+                            <div class="col-6 text-end">
+                                <a class="btn btn-success" href="{{ route('Add Lecture') }}">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span class="border-end mx-2"></span>
+                                    Tambah
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body table-responsive">
-                        <table id="tbAccount" class="table table-responsive-md table-bordered table-hover">
+                        <table id="tbAccount" class="table table-responsive-sm table-bordered table-hover">
                             <thead class="text-center">
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Telpon</th>
+                                    <th>Telegram</th>
                                     <th>Status</th>
                                     <th>Tindakan</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($login as $data)
+                                @foreach ($lecture as $data)
                                     <tr class="text-center align-middle my-auto">
                                         <td class="align-middle">{{ $loop->iteration }}</td>
-                                        <td class="align-middle">{{ $data->detailLogin->nama ?? '-' }}</td>
+                                        <td class="align-middle">{{ $data->nama ?? '-' }}</td>
+                                        <td class="align-middle">{{ $data->email ?? '-' }}</td>
+                                        <td class="align-middle">{{ $data->nomor_telepon ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->username ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->status ?? '-' }}</td>
                                         <td class="text-center align-middle">
-                                            {{-- <a href="" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-eye"></i>
-                                            </a> --}}
                                             @if ($data->id != auth()->guard()->user()->id)
-                                                <a href="{{ route('Edit Account', $data->id) }}" class="btn btn-warning btn-sm">
+                                                <a href="{{ route('Edit Lecture', $data->id) }}" class="btn btn-warning btn-sm">
                                                     <i class="fas fa-user-edit"></i>
                                                 </a>
-                                                <button type="button" onclick="statusAkun('{{ $data->id }}', '{{ $data->status }}')" class="btn btn-sm btn-danger">
+                                                <button type="button" onclick="statusDosen('{{ $data->id }}', '{{ $data->status }}')" class="btn btn-sm btn-danger">
                                                     <i class="fas fa-times"></i>
                                                 </button>
                                             @else
@@ -78,7 +86,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="accountStatusLabel">Status Akun</h5>
+                    <h5 class="modal-title" id="accountStatusLabel">Status Dosen</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -132,9 +140,9 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#account-management').addClass('menu-is-opening menu-open');
-            $('#account-management-link').addClass('active');
-            $('#account-data').addClass('active');
+            $('#additional-data').addClass('menu-is-opening menu-open');
+            $('#additional-data-link').addClass('active');
+            $('#lecture-data').addClass('active');
         });
 
         $(function () {
@@ -143,8 +151,8 @@
                 "oLanguage": {
                     "sSearch": "Cari:",
                     "sZeroRecords": "Data tidak ditemukan",
-                    "sSearchPlaceholder": "Cari akun ...",
-                    "emptyTable": "Tidak terdapat data akun",
+                    "sSearchPlaceholder": "Cari dosen ...",
+                    "emptyTable": "Tidak terdapat data dosen",
                     "infoEmpty": "Menampilkan 0 data",
                     "infoFiltered": "(dari _MAX_ Data)"
                 },
@@ -158,9 +166,9 @@
             });
         });
 
-        function statusAkun(id, status) {
+        function statusDosen(id, status) {
             $('#accountStatus').modal('show');
-            $('#formAccountStatus').attr("action", "{{ route('Account Status', '') }}"+"/"+id);
+            $('#formAccountStatus').attr("action", "{{ route('Update Status Lecture', '') }}"+"/"+id);
             if (status == 'Aktif') {
                 $('#accountStatusOption option').remove();
                 $('#accountStatusOption').append(`<option selected value="${status}">${status}</option>`);

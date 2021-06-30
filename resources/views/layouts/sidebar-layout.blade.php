@@ -75,6 +75,56 @@
                     </ul>
                 </li>
             </li>
+            <li class="nav nav-treeview">
+                <li class="nav-item" id="additional-data">
+                    <a href="#" class="nav-link" id="additional-data-link">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>
+                            Additional Data
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ms-3">
+                        <li class="nav-item">
+                            <a href="{{ route('All Lecture') }}" id="lecture-data" class="nav-link">
+                                <i class="fas fa-list-alt nav-icon"></i>
+                                <p>Data Dosen</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" id="jenis-praktikum" class="nav-link">
+                                <i class="fas fa-list-alt nav-icon"></i>
+                                <p>Jenis Praktikum</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </li>
+            <li class="nav nav-treeview">
+                <li class="nav-item" id="praktikum">
+                    <a href="#" class="nav-link" id="praktikum-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            Praktikum
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ms-3">
+                        <li class="nav-item">
+                            <a href="" id="data-praktikum" class="nav-link">
+                                <i class="fas fa-clipboard-list nav-icon"></i>
+                                <p>Praktikum</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" id="nilai" class="nav-link">
+                                <i class="fas fa-clipboard-check nav-icon"></i>
+                                <p>Nilai</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </li>
             <div class="dropdown-divider bg-light"></div>
             <li class="nav-item">
                 <a href="#" class="nav-link">

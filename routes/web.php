@@ -60,3 +60,21 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
     Route::post('roles/update/{login}', 'AccountManagement\RolesController@updateAccountRoles')->name('Update Account Roles');
 
 // End Route
+
+
+
+// Additional Data Route
+
+// All Data
+Route::get('additional-data/all-lecture', 'AdditionalData\LectureController@allLecture')->name('All Lecture');
+Route::post('additional-data/update-lecture/status/{id}', 'AdditionalData\LectureController@updateStatusLecture')->name('Update Status Lecture');
+
+// Add Data
+Route::get('additional-data/add-lecture', 'AdditionalData\LectureController@addLecture')->name('Add Lecture');
+Route::post('additional-data/save-lecture', 'AdditionalData\LectureController@storeLecture')->name('Save Lecture');
+
+// Update Data
+Route::get('additional-data/edit-lecture/{dosen}', 'AdditionalData\LectureController@editLecture')->name('Edit Lecture');
+Route::post('additional-data/update-lecture/{dosen}', 'AdditionalData\LectureController@updateLecture')->name('Update Lecture');
+
+// End Route

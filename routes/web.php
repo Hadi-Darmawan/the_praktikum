@@ -65,16 +65,17 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
 
 // Additional Data Route
 
-// All Data
-Route::get('additional-data/all-lecture', 'AdditionalData\LectureController@allLecture')->name('All Lecture');
-Route::post('additional-data/update-lecture/status/{id}', 'AdditionalData\LectureController@updateStatusLecture')->name('Update Status Lecture');
+    // Lecture Data
+    Route::get('additional-data/all-lecture', 'AdditionalData\LectureController@allLecture')->name('All Lecture');
+    Route::post('additional-data/update-lecture/status/{id}', 'AdditionalData\LectureController@updateStatusLecture')->name('Update Status Lecture');
+    Route::get('additional-data/add-lecture', 'AdditionalData\LectureController@addLecture')->name('Add Lecture');
+    Route::post('additional-data/save-lecture', 'AdditionalData\LectureController@storeLecture')->name('Save Lecture');
+    Route::get('additional-data/edit-lecture/{dosen}', 'AdditionalData\LectureController@editLecture')->name('Edit Lecture');
+    Route::post('additional-data/update-lecture/{dosen}', 'AdditionalData\LectureController@updateLecture')->name('Update Lecture');
 
-// Add Data
-Route::get('additional-data/add-lecture', 'AdditionalData\LectureController@addLecture')->name('Add Lecture');
-Route::post('additional-data/save-lecture', 'AdditionalData\LectureController@storeLecture')->name('Save Lecture');
-
-// Update Data
-Route::get('additional-data/edit-lecture/{dosen}', 'AdditionalData\LectureController@editLecture')->name('Edit Lecture');
-Route::post('additional-data/update-lecture/{dosen}', 'AdditionalData\LectureController@updateLecture')->name('Update Lecture');
+    // Data Jenis Praktikum
+    Route::get('additional-data/jenis-praktikum', 'AdditionalData\JenisPraktikumController@jenisPraktikum')->name('Jenis Praktikum');
+    Route::post('additional-data/save-jenis-praktikum', 'AdditionalData\JenisPraktikumController@storeJenisPraktikum')->name('Save Jenis Praktikum');
+    Route::post('additional-data/delete-jenis-praktikum/{id}', 'AdditionalData\JenisPraktikumController@deleteJenisPraktikum')->name('Delete Jenis Praktikum');
 
 // End Route

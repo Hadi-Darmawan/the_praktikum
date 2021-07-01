@@ -92,7 +92,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" id="jenis-praktikum" class="nav-link">
+                            <a href="{{ route('Jenis Praktikum') }}" id="jenis-praktikum" class="nav-link">
                                 <i class="fas fa-list-alt nav-icon"></i>
                                 <p>Jenis Praktikum</p>
                             </a>

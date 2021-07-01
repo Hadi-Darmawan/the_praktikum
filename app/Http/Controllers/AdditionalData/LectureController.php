@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class LectureController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function allLecture()
     {
         $lecture = Dosen::get();
@@ -30,7 +35,7 @@ class LectureController extends Controller
         ],
         [
             'nama.required' => "Nama lengkap wajib diisi",
-            'nama.regex' => "Forma nama tidak sesuai",
+            'nama.regex' => "Format nama tidak sesuai",
             'nama.max' => "Nama lengkap maksimal berjumlah 100 karakter",
             'email.required' => "Email wajib diisi",
             'email.email' => "Masukan email valid",

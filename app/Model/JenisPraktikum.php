@@ -12,5 +12,6 @@ class JenisPraktikum extends Model
         'nama_praktikum',
         'semester',
         'konsentrasi',
+        'deleted_at',
     ];
 }

@@ -59,11 +59,13 @@
                                                 <span class="border-end mx-2"></span>
                                                 Detail
                                             </a>
-                                            <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i>
-                                                <span class="border-end border-dark mx-2"></span>
-                                                Edit
-                                            </a>
+                                            @if ($data->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
+                                                <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                    <span class="border-end border-dark mx-2"></span>
+                                                    Edit
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

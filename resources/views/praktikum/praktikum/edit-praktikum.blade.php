@@ -156,7 +156,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6 my-auto">
-                                                    <a href="{{ route('Download Modul Praktikum', $modul_praktikum->id) }}" target="_blank" class="btn btn-primary btn-sm my-3">
+                                                    <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm my-3">
                                                         <i class="fas fa-download"></i>
                                                         <span class="border-end mx-2"></span>
                                                         Download

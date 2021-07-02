@@ -15,7 +15,7 @@
                 <a href="#" class="nav-link" id="authentication">
                     <i class="nav-icon fas fa-user-circle"></i>
                     <p>
-                        1805551041
+                        {{ auth()->guard()->user()->detailLogin->nim }}
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -114,6 +114,12 @@
                             <a href="{{ route('All Praktikum') }}" id="praktikum" class="nav-link">
                                 <i class="fas fa-clipboard-list nav-icon"></i>
                                 <p>Praktikum</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('All Penilaian') }}" id="penilaian" class="nav-link">
+                                <i class="fas fa-tags nav-icon"></i>
+                                <p>Penilaian</p>
                             </a>
                         </li>
                         <li class="nav-item">

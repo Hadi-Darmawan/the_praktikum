@@ -34,4 +34,9 @@ class Praktikum extends Model
     {
         return $this->hasOne(ModulPraktikum::class, 'id_praktikum', 'id');
     }
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class, 'id_praktikum', 'id');
+    }
 }

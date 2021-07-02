@@ -85,7 +85,7 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
 // Praktikum Route
 
     // Routes for read adna create praktikum
-    Route::get('praktikum', 'Praktikum\PraktikumController@allPraktikum')->name('All Praktikum');
+    Route::get('praktikum/all-praktikum', 'Praktikum\PraktikumController@allPraktikum')->name('All Praktikum');
     Route::get('praktikum/add-praktikum', 'Praktikum\PraktikumController@addPraktikum')->name('Add Praktikum');
     Route::post('praktikum/save-praktikum', 'Praktikum\PraktikumController@storePraktikum')->name('Save Praktikum');
 
@@ -107,5 +107,13 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
     // Routes for upload & download praktikum modul
     Route::post('praktikum/edit-praktikum/upload-modul/{praktikum}', 'Praktikum\ModulPraktikumController@uploadModul')->name('Upload Modul Praktikum');
     Route::get('praktikum/download-modul/{id}', 'Praktikum\ModulPraktikumController@downloadModul')->name('Download Modul Praktikum');
+
+// End Route
+
+// Penilaian Route
+
+    Route::get('praktikum/penilaian/all-penilaian', 'Praktikum\PenilaianController@allPenilaian')->name('All Penilaian');
+    Route::post('praktikum/penilaian/add-penilaian', 'Praktikum\PenilaianController@storePenilaian')->name('Add Penilaian');
+    Route::post('praktikum/penilaian/delete-penilaian/{id}', 'Praktikum\PenilaianController@deletePenilaian')->name('Delete Penilaian');
 
 // End Route

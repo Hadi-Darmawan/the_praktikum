@@ -68,7 +68,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">File Modul</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <a href="{{ route('Download Modul Praktikum', $modul_praktikum->id) }}" target="_blank" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm">
                                                     <i class="fas fa-download"></i>
                                                     <span class="border-end mx-2"></span>
                                                     Download

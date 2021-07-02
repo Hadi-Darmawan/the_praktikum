@@ -14,4 +14,9 @@ class JenisPraktikum extends Model
         'konsentrasi',
         'deleted_at',
     ];
+
+    public function praktikum()
+    {
+        return $this->hasMany(Praktikum::class, 'id_jenis_praktikum', 'id');
+    }
 }

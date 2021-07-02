@@ -112,7 +112,7 @@ class AccountController extends Controller
         $this->validate($request,[
             'nama' => "required|regex:/^[a-z ,.'-]+$/i|max:100",
             'nim' => "required|unique:tb_detail_login,nim|numeric|digits:10",
-            'nomor_telepon' => "nullable|unique:tb_detail_login,nomor_telepon|numeric|digits_between:12-15",
+            'nomor_telepon' => "nullable|unique:tb_detail_login,nomor_telepon|numeric|digits_between:12,15",
             'username_telegram' => "nullable|unique:tb_detail_login,username_telegram|max:27",
             'line_id' => "nullable|unique:tb_detail_login,line_id|max:27",
             'role' => "required",

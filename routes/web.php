@@ -79,3 +79,33 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
     Route::post('additional-data/delete-jenis-praktikum/{id}', 'AdditionalData\JenisPraktikumController@deleteJenisPraktikum')->name('Delete Jenis Praktikum');
 
 // End Route
+
+
+
+// Praktikum Route
+
+    // Routes for read adna create praktikum
+    Route::get('praktikum', 'Praktikum\PraktikumController@allPraktikum')->name('All Praktikum');
+    Route::get('praktikum/add-praktikum', 'Praktikum\PraktikumController@addPraktikum')->name('Add Praktikum');
+    Route::post('praktikum/save-praktikum', 'Praktikum\PraktikumController@storePraktikum')->name('Save Praktikum');
+
+    // Route for praktikum detail
+    Route::get('praktikum/{praktikum}', 'Praktikum\PraktikumController@detailPraktikum')->name('Detail Praktikum');
+
+    // Routes for edit praktikum data
+    Route::get('praktikum/edit-praktikum/{praktikum}', 'Praktikum\PraktikumController@editPraktikum')->name('Edit Praktikum');
+    Route::post('praktikum/update-praktikum/{praktikum}', 'Praktikum\PraktikumController@updatePraktikum')->name('Update Praktikum');
+
+    // Routes for add & delete asisten praktikum
+    Route::post('praktikum/edit-praktikum/add-asisten/{praktikum}', 'Praktikum\AsistenPraktikumController@storeAsistenPraktikum')->name('Add Asisten Praktikum');
+    Route::post('praktikum/edit-praktikum/delete-asisten/{id}', 'Praktikum\AsistenPraktikumController@deleteAsistenPraktikum')->name('Delete Asisten Praktikum');
+
+    // Routes for add & delete peserta praktikum
+    Route::post('praktikum/edit-praktikum/add-praktikan/{praktikum}', 'Praktikum\AnggotaPraktikumController@storeAnggotaPraktikum')->name('Add Anggota Praktikum');
+    Route::post('praktikum/edit-praktikum/delete-praktikan/{id}', 'Praktikum\AnggotaPraktikumController@deleteAnggotaPraktikum')->name('Delete Anggota Praktikum');
+
+    // Routes for upload & download praktikum modul
+    Route::post('praktikum/edit-praktikum/upload-modul/{praktikum}', 'Praktikum\ModulPraktikumController@uploadModul')->name('Upload Modul Praktikum');
+    Route::get('praktikum/download-modul/{id}', 'Praktikum\ModulPraktikumController@downloadModul')->name('Download Modul Praktikum');
+
+// End Route

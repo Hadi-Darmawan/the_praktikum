@@ -30,4 +30,14 @@ class Login extends Authenticatable
     {
         return $this->hasMany(DetailRole::class, 'id_login', 'id');
     }
+
+    public function asistenPraktikum()
+    {
+        return $this->hasMany(AsistenPraktikum::class, 'id_login', 'id');
+    }
+
+    public function kelompokPraktikum()
+    {
+        return $this->hasMany(KelompokPraktikum::class, 'id_login', 'id');
+    }
 }

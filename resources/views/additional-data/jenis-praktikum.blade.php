@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="card-body table-responsive">
-                        <table id="tbAccount" class="table table-responsive-sm table-bordered table-hover">
+                        <table id="tbJenisPraktikum" class="table table-responsive-sm table-bordered table-hover">
                             <thead class="text-center">
                                 <tr>
                                     <th>No</th>
@@ -134,7 +134,7 @@
                                 @foreach ($jenis_praktikum as $data)
                                     <tr class="text-center align-middle my-auto">
                                         <td class="align-middle">{{ $loop->iteration }}</td>
-                                        <td class="align-middle">{{ $data->nama ?? '-' }}</td>
+                                        <td class="align-middle">Praktikum {{ $data->nama_praktikum ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->semester ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->konsentrasi ?? '-' }}</td>
                                         @if ($data->deleted_at == NULL)
@@ -211,12 +211,12 @@
         });
 
         $(function () {
-            $("#tbAccount").DataTable({
+            $("#tbJenisPraktikum").DataTable({
                 "responsive": false, "lengthChange": false, "autoWidth": false,
                 "oLanguage": {
                     "sSearch": "Cari:",
                     "sZeroRecords": "Data tidak ditemukan",
-                    "sSearchPlaceholder": "Cari praktikum ...",
+                    "sSearchPlaceholder": "Cari jenis praktikum ...",
                     "emptyTable": "Tidak terdapat jenis praktikum",
                     "infoEmpty": "Menampilkan 0 data",
                     "infoFiltered": "(dari _MAX_ Data)"

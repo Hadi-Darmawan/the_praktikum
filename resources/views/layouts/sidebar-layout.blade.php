@@ -101,8 +101,8 @@
                 </li>
             </li>
             <li class="nav nav-treeview">
-                <li class="nav-item" id="praktikum">
-                    <a href="#" class="nav-link" id="praktikum-link">
+                <li class="nav-item" id="praktikum-management">
+                    <a href="#" class="nav-link" id="praktikum-management-link">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             Praktikum
@@ -111,7 +111,7 @@
                     </a>
                     <ul class="nav nav-treeview ms-3">
                         <li class="nav-item">
-                            <a href="" id="data-praktikum" class="nav-link">
+                            <a href="{{ route('All Praktikum') }}" id="praktikum" class="nav-link">
                                 <i class="fas fa-clipboard-list nav-icon"></i>
                                 <p>Praktikum</p>
                             </a>

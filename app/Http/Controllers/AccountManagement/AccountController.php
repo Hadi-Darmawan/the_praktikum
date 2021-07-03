@@ -25,7 +25,7 @@ class AccountController extends Controller
 
     public function editAccount(Login $login)
     {
-        $detail_role = DetailRole::where('id_login', auth()->guard()->user()->id)->get();
+        $detail_role = DetailRole::where('id_login', $login->id)->get();
         return view('account-management.edit-account', compact('login', 'detail_role'));
     }
 
@@ -103,8 +103,7 @@ class AccountController extends Controller
 
     public function addAccount()
     {
-        $role = Role::get();
-        return view('account-management.add-account', compact('role'));
+        return view('account-management.add-account');
     }
 
     public function storeAccount(Request $request)
@@ -115,7 +114,6 @@ class AccountController extends Controller
             'nomor_telepon' => "nullable|unique:tb_detail_login,nomor_telepon|numeric|digits_between:12,15",
             'username_telegram' => "nullable|unique:tb_detail_login,username_telegram|max:27",
             'line_id' => "nullable|unique:tb_detail_login,line_id|max:27",
-            'role' => "required",
         ],
         [
             'nama.required' => "Nama lengkap wajib diisi",
@@ -156,13 +154,6 @@ class AccountController extends Controller
                     'username_telegram' => $request->username_telegram,
                     'line_id' => $request->line_id,
                 ]);
-
-                foreach ($request->role as $data) {
-                    DetailRole::create([
-                        'id_login' => $login->id,
-                        'id_role' => $data,
-                    ]);
-                }
             DB::commit();
             
             return redirect()->back()->with('success', 'Akun berhasil di daftarkan');

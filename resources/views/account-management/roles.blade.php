@@ -49,10 +49,10 @@
                                         <td class="align-middle">{{ $data->username ?? '-' }}</td>
                                         <td class="align-middle">{{ $detail_role->where('id_login', $data->id)->count() }}</td>
                                         <td class="text-center align-middle">
-                                            <a href="{{ route('Edit Account Roles', $data->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-user-edit"></i>
-                                                <span class="border-end border-dark mx-2"></span>
-                                                Edit
+                                            <a href="{{ route('Edit Account Roles', $data->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                                <span class="border-end mx-2"></span>
+                                                Detail
                                             </a>
                                         </td>
                                     </tr>

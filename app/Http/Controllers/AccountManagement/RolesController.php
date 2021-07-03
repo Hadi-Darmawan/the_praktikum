@@ -33,31 +33,31 @@ class RolesController extends Controller
         return view('account-management.edit-account-roles', compact('login', 'role', 'detail_role'));
     }
 
-    public function updateAccountRoles(Request $request, Login $login)
-    {
-        $this->validate($request,[
-            'role' => "required",
-        ],
-        [
-            'role.required' => "Role wajib dipilih",
-        ]);
+    // public function updateAccountRoles(Request $request, Login $login)
+    // {
+    //     $this->validate($request,[
+    //         'role' => "required",
+    //     ],
+    //     [
+    //         'role.required' => "Role wajib dipilih",
+    //     ]);
 
-        try {
-            DB::beginTransaction();
-                DetailRole::where('id_login', $login->id)->delete();
+    //     try {
+    //         DB::beginTransaction();
+    //             DetailRole::where('id_login', $login->id)->delete();
 
-                foreach ($request->role as $data) {
-                    DetailRole::create([
-                        'id_login' => $login->id,
-                        'id_role' => $data,
-                    ]);
-                }
-            DB::commit();
+    //             foreach ($request->role as $data) {
+    //                 DetailRole::create([
+    //                     'id_login' => $login->id,
+    //                     'id_role' => $data,
+    //                 ]);
+    //             }
+    //         DB::commit();
             
-            return redirect()->back()->with('success', 'Jabatan akun berhasil diperbaharui');
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return redirect()->back()->with('failed', 'Jabatan akun gagal diperbaharui');
-        }
-    }
+    //         return redirect()->back()->with('success', 'Jabatan akun berhasil diperbaharui');
+    //     } catch (\Throwable $th) {
+    //         DB::rollback();
+    //         return redirect()->back()->with('failed', 'Jabatan akun gagal diperbaharui');
+    //     }
+    // }
 }

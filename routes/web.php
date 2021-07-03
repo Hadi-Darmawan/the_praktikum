@@ -117,3 +117,10 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
     Route::post('praktikum/penilaian/delete-penilaian/{id}', 'Praktikum\PenilaianController@deletePenilaian')->name('Delete Penilaian');
 
 // End Route
+
+// Nilai Route
+
+    Route::get('praktikum/nilai/data-praktikum', 'Praktikum\NilaiController@dataPraktikum')->name('Data Praktikum');
+    Route::get('praktikum/nilai/penilaian/{praktikum}', 'Praktikum\NilaiController@penilaian')->name('Penilaian');
+
+// End Route

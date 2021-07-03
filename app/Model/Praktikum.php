@@ -15,7 +15,7 @@ class Praktikum extends Model
         'tahun',
     ];
 
-    public function jenis_praktikum()
+    public function jenisPraktikum()
     {
         return $this->belongsTo(JenisPraktikum::class, 'id_jenis_praktikum', 'id');
     }
@@ -38,5 +38,15 @@ class Praktikum extends Model
     public function penilaian()
     {
         return $this->hasMany(Penilaian::class, 'id_praktikum', 'id');
+    }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'id_praktikum', 'id');
+    }
+
+    public function nilaiTotal()
+    {
+        return $this->hasMany(NilaiTotal::class, 'id_praktikum', 'id');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Data Praktikum')
+@section('title', 'Nilai Praktikum')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -9,12 +9,12 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Data Tambahan</h1>
+        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
         <div class="col-auto ml-auto text-right mt-n1">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Jenis praktikum</li>
+                    <li class="breadcrumb-item active" aria-current="page">Nilai praktikum</li>
                 </ol>
             </nav>
         </div>
@@ -25,15 +25,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-6 my-auto">
+                            <div class="col-12 my-auto">
                                 <h3 class="card-title my-auto">Daftar Praktikum</h3>
-                            </div>
-                            <div class="col-6 text-end">
-                                <a class="btn btn-success" href="{{ route('Add Praktikum') }}">
-                                    <i class="fas fa-plus"></i>
-                                    <span class="border-end mx-2"></span>
-                                    Tambah
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -57,15 +50,13 @@
                                             <a href="{{ route('Detail Praktikum', $data->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i>
                                                 <span class="border-end mx-2"></span>
-                                                Detail
+                                                Nilai
                                             </a>
-                                            @if ($data->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
-                                                <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                    <span class="border-end border-dark mx-2"></span>
-                                                    Edit
-                                                </a>
-                                            @endif
+                                            <a href="{{ route('Penilaian', $data->id) }}" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-clipboard-check"></i>
+                                                <span class="border-end border-dark mx-2"></span>
+                                                Penilaian
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -84,35 +75,11 @@
     <script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 
-    @if($message = Session::get('success'))
-        <script>
-            $(document).ready(function(){
-                alertSuccess('{{$message}}');
-            });
-        </script>
-    @endif
-
-    @if($message = Session::get('error'))
-        <script>
-            $(document).ready(function(){
-                alertError('{{$message}}');
-            });
-        </script>
-    @endif
-
-    @if($message = Session::get('failed'))
-        <script>
-            $(document).ready(function(){
-                alertDanger('{{$message}}');
-            });
-        </script>
-    @endif
-
     <script type="text/javascript">
         $(document).ready(function(){
             $('#praktikum-management').addClass('menu-is-opening menu-open');
             $('#praktikum-management-link').addClass('active');
-            $('#praktikum').addClass('active');
+            $('#nilai').addClass('active');
         });
 
         $(function () {

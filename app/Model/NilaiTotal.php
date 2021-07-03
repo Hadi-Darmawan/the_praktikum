@@ -4,14 +4,15 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Penilaian extends Model
+class NilaiTotal extends Model
 {
-    protected $table = 'tb_penilaian';
+    protected $table = 'tb_nilai_total';
 
     protected $fillable = [
         'id_praktikum',
-        'nama_penilaian',
-        'persentase_nilai',
+        'id_login',
+        'nilai_total',
+        'nilai_huruf',
     ];
 
     public function praktikum()
@@ -19,8 +20,8 @@ class Penilaian extends Model
         return $this->belongsTo(Praktikum::class, 'id_praktikum', 'id');
     }
 
-    public function nilai()
+    public function login()
     {
-        return $this->hasMany(Nilai::class, 'id_penilaian', 'id');
+        return $this->belongsTo(Login::class, 'id_login', 'id');
     }
 }

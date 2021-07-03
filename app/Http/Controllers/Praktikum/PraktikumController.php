@@ -95,7 +95,7 @@ class PraktikumController extends Controller
         $jenis_praktikum = JenisPraktikum::where('id', $praktikum->id_jenis_praktikum)->first();
         $kelompok_praktikum = KelompokPraktikum::where('id_praktikum', $praktikum->id)->get();
 
-        return view('praktikum.praktikum.detail-praktikum', compact('praktikum', 'asisten_praktikum', 'jenis_praktikum', 'modul_praktikum', 'kelompok_praktikum'));
+        return view('praktikum.praktikum.detail-praktikum', compact('praktikum', 'asisten_praktikum', 'jenis_praktikum', 'kelompok_praktikum'));
     }
 
     public function editPraktikum(Praktikum $praktikum)

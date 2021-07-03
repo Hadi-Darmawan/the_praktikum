@@ -40,4 +40,14 @@ class Login extends Authenticatable
     {
         return $this->hasMany(KelompokPraktikum::class, 'id_login', 'id');
     }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'id_login', 'id');
+    }
+
+    public function nilaiTotal()
+    {
+        return $this->hasMany(NilaiTotal::class, 'id_login', 'id');
+    }
 }

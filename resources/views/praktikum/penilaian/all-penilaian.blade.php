@@ -29,11 +29,11 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6 my-auto">
-                                <h3 class="card-title my-auto">Daftar Praktikum</h3>
+                                <h3 class="card-title my-auto">Daftar Penilaian</h3>
                             </div>
                             <div class="col-6 text-end">
                                 <button class="btn btn-sm btn-primary my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#tambahPenilaian" aria-expanded="false" aria-controls="tambahPenilaian">
-                                    <i class="fas fa-user-plus"></i>
+                                    <i class="fas fa-plus"></i>
                                     <span class="border-end mx-2"></span>
                                     Tambah
                                 </button>
@@ -52,9 +52,7 @@
                                                     <select class="select2 form-control @error('praktikum') is-invalid @enderror" id="praktikum" name="praktikum" data-placeholder="Pilih asisten praktikum" required style="width: 100%">
                                                         <option value=""></option>
                                                         @foreach ($praktikum as $data)
-                                                            @foreach ($nama_praktikum as $praktikum)
-                                                                <option value="{{ $data->id }}">{{ $praktikum->nama_praktikum }}</option>
-                                                            @endforeach
+                                                            <option value="{{ $data->id }}">{{ $data->jenisPraktikum->nama_praktikum }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('praktikum')
@@ -133,19 +131,20 @@
                                 @foreach ($penilaian as $data)
                                     <tr class="text-center align-middle my-auto">
                                         <td class="align-middle">{{ $loop->iteration }}</td>
-                                        <td class="align-middle">
-                                            @foreach ($jenis_praktikum->where('id', $data->praktikum->id_jenis_praktikum) as $praktikum)
-                                                {{ $praktikum->nama_praktikum }}
-                                            @endforeach
+                                        <td class="align-middle">{{ $data->praktikum->jenisPraktikum->nama_praktikum }}
                                         </td>
                                         <td class="align-middle">{{ $data->nama_penilaian ?? '-' }}</td>
-                                        <td class="align-middle">{{ $data->persentase_nilai ?? '-' }}</td>
+                                        <td class="align-middle">{{ $data->persentase_nilai ?? '0' }} %</td>
                                         <td class="text-center align-middle">
-                                            <button onclick="hapusPenilaian('{{ $data->id }}')" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                                <span class="border-end border-dark mx-2"></span>
-                                                Hapus
-                                            </button>
+                                            @if ($data->praktikum->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
+                                                <button onclick="hapusPenilaian('{{ $data->id }}')" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    <span class="border-end mx-2"></span>
+                                                    Hapus
+                                                </button>
+                                            @else
+                                                -
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

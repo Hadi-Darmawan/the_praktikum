@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" id="nilai" class="nav-link">
+                            <a href="{{ route('Data Praktikum') }}" id="nilai" class="nav-link">
                                 <i class="fas fa-clipboard-check nav-icon"></i>
                                 <p>Nilai</p>
                             </a>

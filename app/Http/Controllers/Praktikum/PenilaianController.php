@@ -12,6 +12,11 @@ use App\Http\Controllers\Controller;
 
 class PenilaianController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function allPenilaian()
     {
         $login = auth()->guard()->user();
@@ -20,12 +25,8 @@ class PenilaianController extends Controller
         $penilaian = Penilaian::whereIn('id_praktikum', $praktikum_id->toArray())->get();
 
         $praktikum = Praktikum::where('nim_ketua_praktikum', $login->detailLogin->nim)->get();
-        $jenis_praktikum = JenisPraktikum::get();
-        
-        $id_jenis_praktikum = Praktikum::where('nim_ketua_praktikum', $login->detailLogin->nim)->select('id_jenis_praktikum')->get();
-        $nama_praktikum = JenisPraktikum::whereIn('id', $id_jenis_praktikum->toArray())->select('nama_praktikum')->get();
 
-        return view('praktikum.penilaian.all-penilaian', compact('penilaian', 'praktikum', 'jenis_praktikum', 'nama_praktikum'));
+        return view('praktikum.penilaian.all-penilaian', compact('penilaian', 'praktikum'));
     }
 
     public function storePenilaian(Request $request)

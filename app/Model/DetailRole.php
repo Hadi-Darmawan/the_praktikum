@@ -11,6 +11,7 @@ class DetailRole extends Model
     protected $fillable = [
         'id_role',
         'id_login',
+        'id_praktikum',
     ];
 
     public function role()
@@ -21,5 +22,10 @@ class DetailRole extends Model
     public function login()
     {
         return $this->belongsTo(Login::class, 'id_login', 'id');
+    }
+
+    public function praktikum()
+    {
+        return $this->belongsTo(Praktikum::class, 'id_praktikum', 'id');
     }
 }

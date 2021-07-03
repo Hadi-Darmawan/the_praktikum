@@ -12,6 +12,7 @@ class Praktikum extends Model
         'id_jenis_praktikum',
         'dosen_pengampu',
         'ketua_praktikum',
+        'nim_ketua_praktikum',
         'tahun',
     ];
 
@@ -48,5 +49,10 @@ class Praktikum extends Model
     public function nilaiTotal()
     {
         return $this->hasMany(NilaiTotal::class, 'id_praktikum', 'id');
+    }
+
+    public function detailRole()
+    {
+        return $this->hasMany(DetailRole::class, 'id_praktikum', 'id');
     }
 }

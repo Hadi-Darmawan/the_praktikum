@@ -18,7 +18,7 @@ class JenisPraktikumController extends Controller
     public function jenisPraktikum()
     {
         $jenis_praktikum = JenisPraktikum::get();
-        return view('additional-data.jenis-praktikum', compact('jenis_praktikum'));
+        return view('additional-data.jenis-praktikum.jenis-praktikum', compact('jenis_praktikum'));
     }
 
     public function storeJenisPraktikum(Request $request)

@@ -68,11 +68,19 @@
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">File Modul</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm">
-                                                    <i class="fas fa-download"></i>
-                                                    <span class="border-end mx-2"></span>
-                                                    Download
-                                                </a>
+                                                @if ($praktikum->modulPraktikum == NULL)
+                                                    <a class="btn btn-secondary btn-sm">
+                                                        <i class="fas fa-download"></i>
+                                                        <span class="border-end mx-2"></span>
+                                                        Modul belum diunggah
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-download"></i>
+                                                        <span class="border-end mx-2"></span>
+                                                        Download
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

@@ -87,13 +87,25 @@
                     <ul class="nav nav-treeview ms-3">
                         <li class="nav-item">
                             <a href="{{ route('All Lecture') }}" id="lecture-data" class="nav-link">
-                                <i class="fas fa-list-alt nav-icon"></i>
+                                <i class="fas fa-user-graduate nav-icon"></i>
                                 <p>Data Dosen</p>
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('All Asisten Praktikum') }}" id="asisten-praktikum-data" class="nav-link">
+                                <i class="fas fa-user-friends nav-icon"></i>
+                                <p>Asisten Praktikum</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('All Peserta Praktikum') }}" id="peserta-praktikum-data" class="nav-link">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>Peserta Praktikum</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('Jenis Praktikum') }}" id="jenis-praktikum" class="nav-link">
-                                <i class="fas fa-list-alt nav-icon"></i>
+                                <i class="fas fa-layer-group nav-icon"></i>
                                 <p>Jenis Praktikum</p>
                             </a>
                         </li>
@@ -117,8 +129,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('All Penilaian') }}" id="penilaian" class="nav-link">
+                            <a href="{{ route('All Penilaian') }}" id="data-penilaian" class="nav-link">
                                 <i class="fas fa-tags nav-icon"></i>
+                                <p>Data Penilaian</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('All Penilaian') }}" id="penilaian" class="nav-link">
+                                <i class="fas fa-tag nav-icon"></i>
                                 <p>Penilaian</p>
                             </a>
                         </li>

@@ -14,7 +14,7 @@
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data Dosen</li>
+                    <li class="breadcrumb-item active" aria-current="page">Data dosen</li>
                 </ol>
             </nav>
         </div>

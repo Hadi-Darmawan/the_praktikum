@@ -17,12 +17,12 @@ class LectureController extends Controller
     public function allLecture()
     {
         $lecture = Dosen::get();
-        return view('additional-data.all-lecture', compact('lecture'));
+        return view('additional-data.lecture.all-lecture', compact('lecture'));
     }
 
     public function addLecture()
     {
-        return view('additional-data.add-lecture');
+        return view('additional-data.lecture.add-lecture');
     }
 
     public function storeLecture(Request $request)
@@ -30,7 +30,7 @@ class LectureController extends Controller
         $this->validate($request,[
             'nama' => "required|regex:/^[a-z ,.'-]+$/i|max:100",
             'email' => "required|email|unique:tb_dosen,email",
-            'nomor_telepon' => "nullable|unique:tb_dosen,nomor_telepon|numeric|digits_between:12-15",
+            'nomor_telepon' => "required|unique:tb_dosen,nomor_telepon|numeric|digits_between:12,15",
             'username_telegram' => "nullable|unique:tb_dosen,username_telegram|max:27",
         ],
         [
@@ -40,6 +40,7 @@ class LectureController extends Controller
             'email.required' => "Email wajib diisi",
             'email.email' => "Masukan email valid",
             'email.unique' => "Email tidak dapat digunakan",
+            'nomor_telepon.required' => "Nomor telepon wajib diisi",
             'nomor_telepon.unique' => "Nomor telepon tidak dapat digunakan",
             'nomor_telepon.numeric' => "Nomor telepon harus berupa angka",
             'nomor_telepon.digits_between' => "Nomor telepon harus berjumlah 12-15 angka",
@@ -83,23 +84,19 @@ class LectureController extends Controller
 
     public function editLecture(Dosen $dosen)
     {
-        return view('additional-data.edit-lecture', compact('dosen'));
+        return view('additional-data.lecture.edit-lecture', compact('dosen'));
     }
 
     public function updateLecture(Request $request, Dosen $dosen)
     {
         $this->validate($request,[
             'nama' => "required|regex:/^[a-z ,.'-]+$/i|max:100",
-            'nomor_telepon' => "nullable|unique:tb_dosen,nomor_telepon|numeric|digits_between:12-15",
             'username_telegram' => "nullable|unique:tb_dosen,username_telegram|max:27",
         ],
         [
             'nama.required' => "Nama lengkap wajib diisi",
             'nama.regex' => "Forma nama tidak sesuai",
             'nama.max' => "Nama lengkap maksimal berjumlah 100 karakter",
-            'nomor_telepon.unique' => "Nomor telepon tidak dapat digunakan",
-            'nomor_telepon.numeric' => "Nomor telepon harus berupa angka",
-            'nomor_telepon.digits_between' => "Nomor telepon harus berjumlah 12-15 angka",
             'username_telegram.unique' => "Username telegram tidak dapat digunakan",
             'username_telegram.max' => "Username telegram maksimal berjumlah 27 karakter",
         ]);
@@ -113,13 +110,34 @@ class LectureController extends Controller
                 'email.email' => "Masukan email valid",
                 'email.unique' => "Email tidak dapat digunakan",
             ]);
-        } elseif ($dosen->email != $request->email) {
+        } elseif ($dosen->email == $request->email) {
             $this->validate($request,[
                 'email' => "required|email",
             ],
             [
                 'email.required' => "Email wajib diisi",
                 'email.email' => "Masukan email valid",
+            ]);
+        }
+
+        if ($dosen->nomor_telepon != $request->nomor_telepon) {
+            $this->validate($request,[
+                'nomor_telepon' => "required|unique:tb_dosen,nomor_telepon|numeric|digits_between:12,15",
+            ],
+            [
+                'nomor_telepon.required' => "Nomor telepon wajib diisi",
+                'nomor_telepon.unique' => "Nomor telepon tidak dapat digunakan",
+                'nomor_telepon.numeric' => "Nomor telepon harus berupa angka",
+                'nomor_telepon.digits_between' => "Nomor telepon harus berjumlah 12-15 angka",
+            ]);
+        } elseif ($dosen->nomor_telepon == $request->nomor_telepon) {
+            $this->validate($request,[
+                'nomor_telepon' => "required|numeric|digits_between:12,15",
+            ],
+            [
+                'nomor_telepon.required' => "Nomor telepon tidak dapat digunakan",
+                'nomor_telepon.numeric' => "Nomor telepon harus berupa angka",
+                'nomor_telepon.digits_between' => "Nomor telepon harus berjumlah 12-15 angka",
             ]);
         }
 

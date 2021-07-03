@@ -156,11 +156,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6 my-auto">
-                                                    <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm my-3">
-                                                        <i class="fas fa-download"></i>
-                                                        <span class="border-end mx-2"></span>
-                                                        Download
-                                                    </a>
+                                                    @if ($praktikum->modulPraktikum == NULL)
+                                                        <a class="btn btn-primary btn-sm my-3">
+                                                            <i class="fas fa-download"></i>
+                                                            <span class="border-end mx-2"></span>
+                                                            Modul belum diunggah
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm my-3">
+                                                            <i class="fas fa-download"></i>
+                                                            <span class="border-end mx-2"></span>
+                                                            Download
+                                                        </a>
+                                                    @endif
                                                 </div>
                                                 <div class="col-6 my-auto text-end">
                                                     <button class="btn btn-success btn-sm my-auto" type="submit">

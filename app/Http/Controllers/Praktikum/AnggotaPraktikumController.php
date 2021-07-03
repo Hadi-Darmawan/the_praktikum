@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Praktikum;
 
+use App\Model\Role;
 use App\Model\Praktikum;
+use App\Model\DetailRole;
 use Illuminate\Http\Request;
 use App\Model\KelompokPraktikum;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +26,8 @@ class AnggotaPraktikumController extends Controller
             'peserta_praktikum.required.*' => "Peserta praktikum wajib dipilih",
         ]);
 
+        $role = Role::where('nama_role', 'Anggota Praktikum')->first();
+
         try {
             DB::beginTransaction();
                 foreach ($request->peserta_praktikum as $data) {
@@ -33,7 +37,13 @@ class AnggotaPraktikumController extends Controller
                         'id_peserta_praktikum' => $data,
                         'kelompok' => $request->kelompok
                     ]);
-                }                
+
+                    DetailRole::create([
+                        'id_role' => $role->id,
+                        'id_login' => $data,
+                        'id_praktikum' => $praktikum->id,
+                    ]);
+                }
             DB::commit();
             
             return redirect()->back()->with('success', 'Peserta praktikum berhasil ditambahkan');

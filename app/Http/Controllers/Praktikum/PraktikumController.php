@@ -26,7 +26,12 @@ class PraktikumController extends Controller
     public function allPraktikum()
     {
         $id_login = auth()->guard()->user()->id;
-        $id_praktikum = KelompokPraktikum::orWhere('id_asisten_praktikum', $id_login)->orWhere('id_peserta_praktikum', $id_login)->select('id_praktikum')->get();
+
+        $role_id = Role::orWhere('nama_role', 'Ketua Praktikum')->orWhere('nama_role', 'Asisten Praktikum')->orWhere('nama_role', 'Anggota Praktikum')->select('id')->get();
+        $id_praktikum = DetailRole::whereIn('id_role', $role_id->toArray())->where('id_login', $id_login)->select('id_praktikum')->get();
+
+        // $id_praktikum = KelompokPraktikum::orWhere('id_asisten_praktikum', $id_login)->orWhere('id_peserta_praktikum', $id_login)->select('id_praktikum')->get();
+
         $praktikum = Praktikum::whereIn('id', $id_praktikum->toArray())->get();
 
         return view('praktikum.praktikum.all-praktikum', compact('praktikum'));
@@ -36,10 +41,7 @@ class PraktikumController extends Controller
     {
         $jenis_praktikum = JenisPraktikum::whereNull('deleted_at')->get();
         $dosen = Dosen::where('status', 'Aktif')->get();
-
-        $role_id = Role::where('nama_role', 'Ketua Praktikum')->select('id')->first();
-        $login_id = DetailRole::whereIn('id_role', $role_id)->select('id_login')->get();
-        $login = Login::where('status', 'Aktif')->whereIn('id', $login_id->toArray())->get();
+        $login = Login::where('status', 'Aktif')->get();
 
         return view('praktikum.praktikum.add-praktikum', compact('jenis_praktikum', 'dosen', 'login'));
     }
@@ -62,21 +64,26 @@ class PraktikumController extends Controller
         ]);
 
         $dosen = Dosen::where('id', $request->dosen_pengampu)->first();
-        $dosen_pengampu = $dosen->nama;
-
         $detail_login = DetailLogin::where('id_login', $request->ketua_praktikum)->first();
+        $role = Role::where('nama_role', 'Ketua Praktikum')->first();
 
         try {
             DB::beginTransaction();
                 $praktikum = Praktikum::create([
                     'id_jenis_praktikum' => $request->jenis_praktikum,
-                    'dosen_pengampu' => $dosen_pengampu,
+                    'dosen_pengampu' => $dosen->nama,
                     'ketua_praktikum' => $detail_login->nama,
                     'nim_ketua_praktikum' => $detail_login->nim,
                     'tahun' => $request->tahun,
                 ]);
 
                 AsistenPraktikum::create([
+                    'id_login' => $request->ketua_praktikum,
+                    'id_praktikum' => $praktikum->id,
+                ]);
+
+                DetailRole::create([
+                    'id_role' => $role->id,
                     'id_login' => $request->ketua_praktikum,
                     'id_praktikum' => $praktikum->id,
                 ]);
@@ -100,7 +107,9 @@ class PraktikumController extends Controller
 
     public function editPraktikum(Praktikum $praktikum)
     {
-        $asisten_praktikum = AsistenPraktikum::where('id_praktikum', $praktikum->id)->get();
+        $role_ketua_asisten_id = Role::orWhere('nama_role', 'Asisten Praktikum')->orWhere('nama_role', 'Ketua Praktikum')->select('id')->get();
+        $ketua_asisten_id = DetailRole::whereIn('id_role', $role_ketua_asisten_id->toArray())->where('id_praktikum', $praktikum->id)->select('id_login')->get();
+        $anggota_praktikum_id = KelompokPraktikum::where('id_praktikum', $praktikum->id)->select('id_peserta_praktikum')->get();
 
         # Data Praktikum
         $jenis_praktikum = JenisPraktikum::whereNull('deleted_at')->get();
@@ -110,17 +119,12 @@ class PraktikumController extends Controller
         $login = Login::where('status', 'Aktif')->whereIn('id', $login_id->toArray())->get();
 
         # Asisten Praktikum
-        $role_asisten_id = Role::orWhere('nama_role', 'Asisten Praktikum')->orWhere('nama_role', 'Ketua Praktikum')->select('id')->get();
-        $login_asisten_id = DetailRole::whereIn('id_role', $role_asisten_id->toArray())->select('id_login')->get();
-        $asisten_praktikum_id = AsistenPraktikum::where('id_praktikum', $praktikum->id)->select('id_login')->get();
-        $login_asisten = Login::where('status', 'Aktif')->whereIn('id', $login_asisten_id->toArray())->whereNotIn('id', $asisten_praktikum_id->toArray())->get();
+        $asisten_praktikum = AsistenPraktikum::where('id_praktikum', $praktikum->id)->get();
+        $login_asisten = Login::whereNotIn('id', $ketua_asisten_id->toArray())->whereNotIn('id', $anggota_praktikum_id)->where('status', 'Aktif')->get();
 
         # Peserta Praktikum
         $kelompok_praktikum = KelompokPraktikum::where('id_praktikum', $praktikum->id)->get();
-        $role_peserta_id = Role::orWhere('nama_role', 'Anggota Praktikum')->select('id')->get();
-        $login_peserta_id = DetailRole::whereIn('id_role', $role_peserta_id->toArray())->select('id_login')->get();
-        $peserta_praktikum_id = KelompokPraktikum::where('id_praktikum', $praktikum->id)->select('id_peserta_praktikum')->get();
-        $login_peserta = Login::where('status', 'Aktif')->whereIn('id', $login_peserta_id->toArray())->whereNotIn('id', $peserta_praktikum_id->toArray())->get();
+        $login_peserta = Login::whereNotIn('id', $ketua_asisten_id->toArray())->whereNotIn('id', $anggota_praktikum_id)->where('status', 'Aktif')->get();
 
         return view('praktikum.praktikum.edit-praktikum', compact('praktikum', 'asisten_praktikum', 'jenis_praktikum', 'dosen', 'login', 'login_asisten', 'kelompok_praktikum', 'login_peserta'));
     }

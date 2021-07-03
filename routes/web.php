@@ -73,7 +73,13 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
     Route::get('additional-data/edit-lecture/{dosen}', 'AdditionalData\LectureController@editLecture')->name('Edit Lecture');
     Route::post('additional-data/update-lecture/{dosen}', 'AdditionalData\LectureController@updateLecture')->name('Update Lecture');
 
-    // Data Jenis Praktikum
+    // Asisten Praktikum Data
+    Route::get('additional-data/asisten-praktikum/all-asisten', 'AdditionalData\AsistenPraktikumController@allAsisten')->name('All Asisten Praktikum');
+    
+    // Peserta Praktikum Data
+    Route::get('additional-data/peserta-praktikum/all-peserta', 'AdditionalData\PesertaPraktikumController@allPeserta')->name('All Peserta Praktikum');
+
+    // Jenis Praktikum Data
     Route::get('additional-data/jenis-praktikum', 'AdditionalData\JenisPraktikumController@jenisPraktikum')->name('Jenis Praktikum');
     Route::post('additional-data/save-jenis-praktikum', 'AdditionalData\JenisPraktikumController@storeJenisPraktikum')->name('Save Jenis Praktikum');
     Route::post('additional-data/delete-jenis-praktikum/{id}', 'AdditionalData\JenisPraktikumController@deleteJenisPraktikum')->name('Delete Jenis Praktikum');
@@ -90,7 +96,7 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
     Route::post('praktikum/save-praktikum', 'Praktikum\PraktikumController@storePraktikum')->name('Save Praktikum');
 
     // Route for praktikum detail
-    Route::get('praktikum/{praktikum}', 'Praktikum\PraktikumController@detailPraktikum')->name('Detail Praktikum');
+    Route::get('praktikum/detail/{praktikum}', 'Praktikum\PraktikumController@detailPraktikum')->name('Detail Praktikum');
 
     // Routes for edit praktikum data
     Route::get('praktikum/edit-praktikum/{praktikum}', 'Praktikum\PraktikumController@editPraktikum')->name('Edit Praktikum');

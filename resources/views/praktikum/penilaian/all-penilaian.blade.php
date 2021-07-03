@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Penilaian Praktikum')
+@section('title', 'Data Penilaian Praktikum')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -17,7 +17,7 @@
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Penilaian</li>
+                    <li class="breadcrumb-item active" aria-current="page">Data penilaian</li>
                 </ol>
             </nav>
         </div>
@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6 my-auto">
-                                <h3 class="card-title my-auto">Daftar Penilaian</h3>
+                                <h3 class="card-title my-auto">Daftar Data Penilaian</h3>
                             </div>
                             <div class="col-6 text-end">
                                 <button class="btn btn-sm btn-primary my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#tambahPenilaian" aria-expanded="false" aria-controls="tambahPenilaian">
@@ -195,7 +195,7 @@
         $(document).ready(function(){
             $('#praktikum-management').addClass('menu-is-opening menu-open');
             $('#praktikum-management-link').addClass('active');
-            $('#penilaian').addClass('active');
+            $('#data-penilaian').addClass('active');
 
             $('.select2').select2({
                 placeholder: "Select a state",
@@ -212,7 +212,7 @@
                 "oLanguage": {
                     "sSearch": "Cari:",
                     "sZeroRecords": "Data tidak ditemukan",
-                    "sSearchPlaceholder": "Cari penilaian ...",
+                    "sSearchPlaceholder": "Cari data penilaian ...",
                     "emptyTable": "Tidak terdapat data penilaian",
                     "infoEmpty": "Menampilkan 0 data",
                     "infoFiltered": "(dari _MAX_ Data)"

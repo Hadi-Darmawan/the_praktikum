@@ -25,7 +25,7 @@
                         <form action="{{ route('Save Lecture') }}" method="POST" class="form-horizontal needs-validation" novalidate>
                             @csrf
                             <div class="form-group row">
-                                <label for="nama" class="col-sm-12 col-md-2 col-form-label">Nama</label>
+                                <label for="nama" class="col-sm-12 col-md-2 col-form-label">Nama<span class="text-danger">*</span></label>
                                 <div class="col-sm-12 col-md-10 my-auto">
                                     <input name="nama" type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukan nama dosen" value="{{ old('nama') }}" autocomplete="off" required>
                                     @error('nama')
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="email" class="col-sm-12 col-md-2 col-form-label">Email</label>
+                                <label for="email" class="col-sm-12 col-md-2 col-form-label">Email<span class="text-danger">*</span></label>
                                 <div class="col-sm-12 col-md-10 my-auto">
                                     <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukan email valid" value="{{ old('email') }}" autocomplete="off" required>
                                     @error('email')
@@ -55,12 +55,16 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="nomor_telepon" class="col-sm-12 col-md-2 col-form-label">Nomor Telepon</label>
+                                <label for="nomor_telepon" class="col-sm-12 col-md-2 col-form-label">Nomor Telepon<span class="text-danger">*</span></label>
                                 <div class="col-sm-12 col-md-10 my-auto">
-                                    <input name="nomor_telepon" type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon" placeholder="Masukan nomor telepon" value="{{ old('nomor_telepon') }}" autocomplete="off">
+                                    <input name="nomor_telepon" type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon" placeholder="Masukan nomor telepon" value="{{ old('nomor_telepon') }}" autocomplete="off" required>
                                     @error('nomor_telepon')
                                         <div class="invalid-feedback text-start">
                                             {{ $message }}
+                                        </div>
+                                    @else
+                                        <div class="invalid-feedback">
+                                            Nomor telepon wajib diisi
                                         </div>
                                     @enderror
                                 </div>
@@ -75,6 +79,9 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="form-group my-2 text-end">
+                                <span class="text-danger">* Data Wajib Diisi</span>
                             </div>
                             <div class="form-group row mt-3">
                                 <div class="col-sm-12 d-grid">

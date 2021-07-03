@@ -44,7 +44,7 @@
                                 <form action="{{ route('Save Jenis Praktikum') }}" method="POST" class="needs-validation my-auto" novalidate>
                                     @csrf
                                     <div class="form-group form-group-sm row">
-                                        <label for="nama_praktikum" class="col-sm-12 col-md-2 col-form-label">Nama Praktikum</label>
+                                        <label for="nama_praktikum" class="col-sm-12 col-md-2 col-form-label">Nama Praktikum<span class="text-danger">*</span></label>
                                         <div class="col-sm-12 col-md-10">
                                             <div class="input-group my-auto">
                                                 <span class="input-group-text" id="basic-addon3">Praktikum</span>
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm row">
-                                        <label for="semester" class="col-sm-12 col-md-2 col-form-label">Semester</label>
+                                        <label for="semester" class="col-sm-12 col-md-2 col-form-label">Semester<span class="text-danger">*</span></label>
                                         <div class="col-sm-12 col-md-10">
                                             <select class="select2 form-control @error('semester') is-invalid @enderror" id="semester" name="semester" data-placeholder="Pilih semester" required style="width: 100%">
                                                 <option value=""></option>
@@ -84,7 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-group-sm row">
-                                        <label for="konsentrasi" class="col-sm-12 col-md-2 col-form-label">Konsentrasi</label>
+                                        <label for="konsentrasi" class="col-sm-12 col-md-2 col-form-label">Konsentrasi<span class="text-danger">*</span></label>
                                         <div class="col-sm-12 col-md-10">
                                             <select class="select2 form-control @error('konsentrasi') is-invalid @enderror" id="konsentrasi" name="konsentrasi" data-placeholder="Pilih konsentrasi" required style="width: 100%">
                                                 <option value=""></option>
@@ -105,14 +105,15 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button class="btn btn-sm btn-success">
-                                                <i class="fas fa-save"></i>
-                                                <span class="border-end mx-2"></span>
-                                                Simpan Praktikum
-                                            </button>
-                                        </div>
+                                    <div class="form-group my-2 text-end">
+                                        <span class="text-danger small">* Data Wajib Diisi</span>
+                                    </div>
+                                    <div class="form-group my-2 text-end">
+                                        <button class="btn btn-sm btn-success">
+                                            <i class="fas fa-save"></i>
+                                            <span class="border-end mx-2"></span>
+                                            Simpan Praktikum
+                                        </button>
                                     </div>
                                 </form>
                             </div>

@@ -99,7 +99,7 @@
                                                 <div class="col-12 my-auto py-2">
                                                     <div class="form-group my-auto">
                                                         <div class="custom-file">
-                                                            <input type="file" name="modul" autocomplete="off" class="custom-file-input @error('modul') is-invalid @enderror" id="fileKTP" autocomplete="off" required>
+                                                            <input type="file" name="modul" autocomplete="off" class="custom-file-input @error('modul') is-invalid @enderror" id="fileKTP" autocomplete="off" accept="application/pdf"  required>
                                                             <label class="custom-file-label @error('modul') is-invalid @enderror" style="overflow-y: hidden" for="fileKTP">Unggah file modul</label>
                                                             @error('modul')
                                                                 <div class="invalid-feedback text-start">

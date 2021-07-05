@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Data Penilaian Praktikum')
+@section('title', 'Praktikum | Data Penilaian')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -12,8 +12,8 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6 my-auto">
-                                <h3 class="card-title my-auto">Daftar Data Penilaian</h3>
+                                <p class="my-auto">Daftar Data Penilaian</p>
                             </div>
                             <div class="col-6 text-end">
                                 <button class="btn btn-sm btn-primary my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#tambahPenilaian" aria-expanded="false" aria-controls="tambahPenilaian">
@@ -100,6 +100,9 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <p class="text-danger text-end small">* Data Wajib Diisi</p>
+                                        </div>
                                         <div class="row">
                                             <div class="col-12 d-flex justify-content-end">
                                                 <button class="btn btn-sm btn-success" type="submit">
@@ -134,15 +137,11 @@
                                         <td class="align-middle">{{ $data->nama_penilaian ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->persentase_nilai ?? '0' }} %</td>
                                         <td class="text-center align-middle">
-                                            @if ($data->praktikum->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
-                                                <button onclick="hapusPenilaian('{{ $data->id }}')" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash"></i>
-                                                    <span class="border-end mx-2"></span>
-                                                    Hapus
-                                                </button>
-                                            @else
-                                                -
-                                            @endif
+                                            <button onclick="hapusPenilaian('{{ $data->id }}')" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                                <span class="border-end mx-2"></span>
+                                                Hapus
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

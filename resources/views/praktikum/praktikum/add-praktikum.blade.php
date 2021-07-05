@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Add Praktikum')
+@section('title', 'Praktikum | Tambah Praktikum')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/select2/css/select2.min.css') }}">
@@ -10,11 +10,11 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
-                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Praktikum') }}">Praktikum</a></li>
+                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Praktikum') }}">Data Praktikum</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tambah praktikum</li>
                 </ol>
             </nav>
@@ -25,15 +25,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header my-auto">
-                        <p class="my-auto">Form Tambah Praktikum</p>
+                        <p class="text-md-start text-center my-auto">Form Tambah Praktikum</p>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('Save Praktikum') }}" method="POST" class="form-horizontal needs-validation" novalidate>
                             @csrf
                             <div class="form-group row">
-                                <label for="role" class="col-sm-12 col-md-2 col-form-label">Jenis Praktikum<span class="text-danger">*</span></label>
+                                <label for="jenis_praktikum" class="col-sm-12 col-md-2 col-form-label">Jenis Praktikum<span class="text-danger">*</span></label>
                                 <div class="col-sm-12 col-md-10 my-auto">
-                                    <select class="select2 form-control @error('jenis_praktikum') is-invalid @enderror" name="jenis_praktikum" data-placeholder="Pilih jenis praktikum" required style="width: 100%">
+                                    <select class="select2 form-control @error('jenis_praktikum') is-invalid @enderror" name="jenis_praktikum" id="jenis_praktikum" data-placeholder="Pilih jenis praktikum" required style="width: 100%">
                                         <option value=""></option>
                                         @foreach ($jenis_praktikum as $data)
                                             <option value="{{ $data->id }}">{{ $data->nama_praktikum }}</option>
@@ -107,10 +107,10 @@
                             </div>
                             <div class="form-group row mt-3">
                                 <div class="col-12 text-end">
-                                    <p class="text-danger"><span>*</span> Data Wajib Diisi</p>
+                                    <p class="text-danger small"><span>*</span> Data Wajib Diisi</p>
                                 </div>
                                 <div class="col-sm-12 d-grid">
-                                    <button type="submit" class="btn btn-sm btn-outline-success my-1">Tambah Praktikum</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-success my-1">Simpan Data</button>
                                 </div>
                             </div>
                         </form>

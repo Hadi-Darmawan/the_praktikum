@@ -44,37 +44,39 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav nav-treeview">
-                <li class="nav-item" id="account-management">
-                    <a href="#" class="nav-link" id="account-management-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
-                        <p>
-                            Account Management
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview ms-3">
-                        <li class="nav-item">
-                            <a href="{{ route('Account Data') }}" id="account-data" class="nav-link">
-                                <i class="fas fa-user-friends nav-icon"></i>
-                                <p>Account Data</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('Add Account') }}" id="add-account" class="nav-link">
-                                <i class="fas fa-user-plus nav-icon"></i>
-                                <p>Add Account</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('Roles Data') }}" id="roles" class="nav-link">
-                                <i class="fas fa-user-tag nav-icon"></i>
-                                <p>Roles</p>
-                            </a>
-                        </li>
-                    </ul>
+            @roles(["Administrator"])
+                <li class="nav nav-treeview">
+                    <li class="nav-item" id="account-management">
+                        <a href="#" class="nav-link" id="account-management-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Account Management
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview ms-3">
+                            <li class="nav-item">
+                                <a href="{{ route('Account Data') }}" id="account-data" class="nav-link">
+                                    <i class="fas fa-user-friends nav-icon"></i>
+                                    <p>Account Data</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('Add Account') }}" id="add-account" class="nav-link">
+                                    <i class="fas fa-user-plus nav-icon"></i>
+                                    <p>Add Account</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('Roles Data') }}" id="roles" class="nav-link">
+                                    <i class="fas fa-user-tag nav-icon"></i>
+                                    <p>Roles</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </li>
-            </li>
+            @endroles
             <li class="nav nav-treeview">
                 <li class="nav-item" id="additional-data">
                     <a href="#" class="nav-link" id="additional-data-link">
@@ -103,12 +105,14 @@
                                 <p>Peserta Praktikum</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('Jenis Praktikum') }}" id="jenis-praktikum" class="nav-link">
-                                <i class="fas fa-layer-group nav-icon"></i>
-                                <p>Jenis Praktikum</p>
-                            </a>
-                        </li>
+                        @roles(["Administrator"])
+                            <li class="nav-item">
+                                <a href="{{ route('Jenis Praktikum') }}" id="jenis-praktikum" class="nav-link">
+                                    <i class="fas fa-layer-group nav-icon"></i>
+                                    <p>Jenis Praktikum</p>
+                                </a>
+                            </li>
+                        @endroles
                     </ul>
                 </li>
             </li>
@@ -122,24 +126,30 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview ms-3">
-                        <li class="nav-item">
-                            <a href="{{ route('All Praktikum') }}" id="praktikum" class="nav-link">
-                                <i class="fas fa-clipboard-list nav-icon"></i>
-                                <p>Praktikum</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('All Data Penilaian') }}" id="data-penilaian" class="nav-link">
-                                <i class="fas fa-tags nav-icon"></i>
-                                <p>Data Penilaian</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('All Penilaian') }}" id="penilaian" class="nav-link">
-                                <i class="fas fa-tag nav-icon"></i>
-                                <p>Penilaian</p>
-                            </a>
-                        </li>
+                        @roles(["Administrator", "Ketua Praktikum"])
+                            <li class="nav-item">
+                                <a href="{{ route('All Praktikum') }}" id="praktikum" class="nav-link">
+                                    <i class="fas fa-clipboard-list nav-icon"></i>
+                                    <p>Praktikum</p>
+                                </a>
+                            </li>
+                        @endroles
+                        @roles(["Ketua Praktikum"])
+                            <li class="nav-item">
+                                <a href="{{ route('All Data Penilaian') }}" id="data-penilaian" class="nav-link">
+                                    <i class="fas fa-tags nav-icon"></i>
+                                    <p>Data Penilaian</p>
+                                </a>
+                            </li>
+                        @endroles
+                        @roles(["Ketua Praktikum", "Asisten Praktikum"])
+                            <li class="nav-item">
+                                <a href="{{ route('All Penilaian') }}" id="penilaian" class="nav-link">
+                                    <i class="fas fa-tag nav-icon"></i>
+                                    <p>Penilaian</p>
+                                </a>
+                            </li>
+                        @endroles
                         <li class="nav-item">
                             <a href="{{ route('All Nilai') }}" id="nilai" class="nav-link">
                                 <i class="fas fa-clipboard-check nav-icon"></i>

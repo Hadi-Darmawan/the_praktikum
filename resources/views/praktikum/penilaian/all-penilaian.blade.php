@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Penilaian Praktikum')
+@section('title', 'Praktikum | Penilaian')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -9,9 +9,9 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
-            <nav aria-label="breadcrumb text-center">
+        <h3 class="col-lg-auto text-center text-md-start">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
+            <nav aria-label="breadcrumb text-center my-auto">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Penilaian</li>
@@ -25,9 +25,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-12 my-auto">
-                                <h3 class="card-title my-auto">Daftar Praktikum</h3>
-                            </div>
+                            <p class="text-md-start text-center my-auto">Daftar Penilaian Praktikum</p>
                         </div>
                     </div>
                     <div class="card-body table-responsive">

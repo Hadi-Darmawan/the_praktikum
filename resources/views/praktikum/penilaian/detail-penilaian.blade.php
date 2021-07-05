@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Detail Penilaian')
+@section('title', 'Praktikum | Detail Penilaian')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -13,11 +13,11 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
-                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Praktikum') }}">Praktikum</a></li>
+                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Penilaian') }}">Penilaian</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Detail penilaian</li>
                 </ol>
             </nav>
@@ -65,7 +65,9 @@
             </div>
             <div class="col-12 my-3">
                 <div class="card">
-                    <div class="card-header">Tambah Penilaian</div>
+                    <div class="card-header">
+                        <p class="text-md-start text-center my-auto">Tambah Penilaian</p>
+                    </div>
                     <div class="card-body">
                         <form action="{{ route('Add Penilaian', $praktikum->id) }}" method="POST" class="form-horizontal needs-validation" novalidate>
                             @csrf
@@ -124,7 +126,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row mt-3">
+                            <div class="form-group row">
                                 <div class="col-12 text-end">
                                     <p class="text-danger small"><span>*</span> Data Wajib Diisi</p>
                                 </div>
@@ -267,7 +269,10 @@
                     "infoEmpty": "Menampilkan 0 data",
                     "infoFiltered": "(dari _MAX_ Data)"
                 },
-            }).buttons().container().addClass('d-flex justify-content-end').appendTo('#tbNilaiAkhir_wrapper');
+            }).buttons().container().addClass('mt-2').appendTo('#tbNilaiAkhir_wrapper');
+
+            $('.buttons-excel').addClass('d-flex justify-content-end');
+            $('.dt-buttons').removeClass('flex-wrap dt-buttons');
         });
     </script>
 @endpush

@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Detail Praktikum')
+@section('title', 'Praktikum | Detail Praktikum')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -12,11 +12,11 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
-                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Praktikum') }}">Praktikum</a></li>
+                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Praktikum') }}">Data Praktikum</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Detail praktikum</li>
                 </ol>
             </nav>
@@ -28,8 +28,8 @@
                 <div class="card">
                     <div class="card-header p-2 d-flex justify-content-center justify-content-lg-start justify-content-sm-start">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" id="tabAsistenPraktikum" href="#dataPraktikum" data-toggle="tab">Data Praktikum</a></li>
-                            <li class="nav-item"><a class="nav-link" id="tabModulPraktikum" href="#modulPraktikum" data-toggle="tab">Modul Praktikum</a></li>
+                            <li class="nav-item small"><a class="nav-link active" id="tabAsistenPraktikum" href="#dataPraktikum" data-toggle="tab">Data Praktikum</a></li>
+                            <li class="nav-item small"><a class="nav-link" id="tabModulPraktikum" href="#modulPraktikum" data-toggle="tab">Modul Praktikum</a></li>
                         </ul>
                     </div>
                     <div class="card-body p-0">
@@ -133,8 +133,8 @@
                 <div class="card">
                     <div class="card-header p-2 d-flex justify-content-center justify-content-lg-start justify-content-sm-start">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" id="tabAsistenPraktikum" href="#asistenPraktikum" data-toggle="tab">Asisten Praktikum</a></li>
-                            <li class="nav-item"><a class="nav-link" id="tabPesertaPraktikum" href="#pesertaPraktikum" data-toggle="tab">Peserta Praktikum</a></li>
+                            <li class="nav-item small"><a class="nav-link active" id="tabAsistenPraktikum" href="#asistenPraktikum" data-toggle="tab">Asisten Praktikum</a></li>
+                            <li class="nav-item small"><a class="nav-link" id="tabPesertaPraktikum" href="#pesertaPraktikum" data-toggle="tab">Peserta Praktikum</a></li>
                         </ul>
                     </div>
                     <div class="card-body p-0">
@@ -144,7 +144,7 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-6 my-auto">
-                                                <h3 class="card-title my-auto">Daftar Asisten Praktikum</h3>
+                                                <p class="my-auto">Daftar Asisten Praktikum</p>
                                             </div>
                                             <div class="col-6 text-end my-auto">
                                                 <button class="btn btn-sm btn-primary my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#tambahAsistenPraktikum" aria-expanded="false" aria-controls="tambahAsistenPraktikum">
@@ -229,7 +229,7 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-6 my-auto">
-                                                <h3 class="card-title my-auto">Daftar Peserta Praktikum</h3>
+                                                <p class="my-auto">Daftar Peserta Praktikum</p>
                                             </div>
                                             <div class="col-6 text-end my-auto">
                                                 <button class="btn btn-sm btn-primary my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#tambahPesertaPraktikum" aria-expanded="false" aria-controls="tambahPesertaPraktikum">

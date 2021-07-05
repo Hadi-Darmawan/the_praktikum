@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Praktikum;
 
+use App\Model\Role;
 use App\Model\Nilai;
 use App\Model\Penilaian;
 use App\Model\Praktikum;
+use App\Model\DetailRole;
 use Illuminate\Http\Request;
-use App\Model\JenisPraktikum;
-use App\Model\KelompokPraktikum;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -22,9 +22,10 @@ class DataPenilaianController extends Controller
     {
         $login = auth()->guard()->user();
 
-        $praktikum_id = KelompokPraktikum::orWhere('id_asisten_praktikum', $login->id)->orWhere('id_peserta_praktikum', $login->id)->select('id_praktikum')->get();
-        $penilaian = Penilaian::whereIn('id_praktikum', $praktikum_id->toArray())->get();
+        $role = Role::where('nama_role', 'Ketua Praktikum')->first();
+        $praktikum_id = DetailRole::where('id_role', $role->id)->where('id_login', $login->id)->select('id_praktikum')->get();
 
+        $penilaian = Penilaian::whereIn('id_praktikum', $praktikum_id->toArray())->get();
         $praktikum = Praktikum::where('nim_ketua_praktikum', $login->detailLogin->nim)->get();
 
         return view('praktikum.data-penilaian.data-penilaian', compact('penilaian', 'praktikum'));

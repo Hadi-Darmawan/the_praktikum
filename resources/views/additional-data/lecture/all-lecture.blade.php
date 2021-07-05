@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Data Dosen')
+@section('title', 'Additional Data | Data Dosen')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -9,8 +9,8 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Data Tambahan</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Additional Data</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
@@ -25,16 +25,22 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-6 my-auto">
-                                <h3 class="card-title my-auto">Daftar Data Dosen</h3>
-                            </div>
-                            <div class="col-6 text-end">
-                                <a class="btn btn-success" href="{{ route('Add Lecture') }}">
-                                    <i class="fas fa-user-plus"></i>
-                                    <span class="border-end mx-2"></span>
-                                    Tambah
-                                </a>
-                            </div>
+                            @roles(["Administrator"])
+                                <div class="col-6 my-auto">
+                                    <p class="my-auto">Daftar Data Dosen</p>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a class="btn btn-sm btn-success" href="{{ route('Add Lecture') }}">
+                                        <i class="fas fa-user-plus"></i>
+                                        <span class="border-end mx-2"></span>
+                                        Tambah
+                                    </a>
+                                </div>
+                            @else
+                                <div class="col-12 my-auto">
+                                    <p class="text-md-start text-center my-auto">Daftar Data Dosen</p>
+                                </div>
+                            @endroles
                         </div>
                     </div>
                     <div class="card-body table-responsive">
@@ -60,7 +66,7 @@
                                         <td class="align-middle">{{ $data->username ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->status ?? '-' }}</td>
                                         <td class="text-center align-middle">
-                                            @if ($data->id != auth()->guard()->user()->id)
+                                            @roles(["Administrator"])
                                                 <a href="{{ route('Edit Lecture', $data->id) }}" class="btn btn-warning btn-sm">
                                                     <i class="fas fa-user-edit"></i>
                                                 </a>
@@ -69,7 +75,7 @@
                                                 </button>
                                             @else
                                                 -
-                                            @endif
+                                            @endroles
                                         </td>
                                     </tr>
                                 @endforeach
@@ -98,7 +104,11 @@
                                 </select>
                             </div>
                             <div class="col-5 d-grid">
-                                <button type="submit" class="btn btn-success">Simpan Status</button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i>
+                                    <span class="border-end mx-2"></span>
+                                    Simpan Status
+                                </button>
                             </div>
                         </div>
                     </form>

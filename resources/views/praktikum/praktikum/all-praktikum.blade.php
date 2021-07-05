@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Data Praktikum')
+@section('title', 'Praktikum | Data Praktikum')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -9,12 +9,12 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Data Tambahan</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Jenis praktikum</li>
+                    <li class="breadcrumb-item active" aria-current="page">Data praktikum</li>
                 </ol>
             </nav>
         </div>
@@ -24,18 +24,23 @@
             <div class="col-12 p-0">
                 <div class="card">
                     <div class="card-header">
-                        <div class="row">
-                            <div class="col-6 my-auto">
-                                <h3 class="card-title my-auto">Daftar Praktikum</h3>
+                        @roles(["Administrator"])
+                            <div class="row">
+                                <div class="col-6 my-auto">
+                                    <p class="my-auto">Daftar Data Praktikum</p>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a class="btn btn-sm btn-success" href="{{ route('Add Praktikum') }}">
+                                        <i class="fas fa-plus"></i>
+                                        <span class="border-end mx-2"></span>
+                                        Tambah
+                                    </a>
+                                </div>
                             </div>
-                            <div class="col-6 text-end">
-                                <a class="btn btn-success" href="{{ route('Add Praktikum') }}">
-                                    <i class="fas fa-plus"></i>
-                                    <span class="border-end mx-2"></span>
-                                    Tambah
-                                </a>
-                            </div>
-                        </div>
+                        @endroles
+                        @roles(["Ketua Praktikum"])
+                            <p class="my-auto">Daftar Data Praktikum</p>
+                        @endroles
                     </div>
                     <div class="card-body table-responsive">
                         <table id="tbPraktikum" class="table table-responsive-sm table-bordered table-hover">
@@ -54,18 +59,22 @@
                                         <td class="align-middle">Praktikum {{ $data->jenisPraktikum->nama_praktikum ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->tahun ?? '-' }}</td>
                                         <td class="text-center align-middle">
-                                            @if ($data->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
-                                                <a href="{{ route('Detail Praktikum', $data->id) }}" class="btn btn-sm btn-primary">
-                                                    <i class="fas fa-eye"></i>
-                                                    <span class="border-end mx-2"></span>
-                                                    Detail
+                                            @roles(["Ketua Praktikum"])
+                                                @if ($data->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
+                                                    <a href="{{ route('Detail Praktikum', $data->id) }}" class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                        <span class="border-end mx-2"></span>
+                                                        Detail
+                                                    </a>
+                                                @endif
+                                            @endroles
+                                            @roles(["Administrator"])
+                                                <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                    <span class="border-end border-dark mx-2"></span>
+                                                    Edit
                                                 </a>
-                                            @endif
-                                            <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i>
-                                                <span class="border-end border-dark mx-2"></span>
-                                                Edit
-                                            </a>
+                                            @endroles
                                         </td>
                                     </tr>
                                 @endforeach

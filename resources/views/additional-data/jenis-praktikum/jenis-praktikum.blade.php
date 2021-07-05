@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Data Jenis Praktikum')
+@section('title', 'Additional Data | Jenis Praktikum')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -12,8 +12,8 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Data Tambahan</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
+        <h3 class="col-lg-auto text-center text-md-start my-auto">Additional Data</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
@@ -29,21 +29,21 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6 my-auto">
-                                <h3 class="card-title my-auto">Daftar Jenis Praktikum</h3>
+                                <p class="my-auto">Daftar Jenis Praktikum</p>
                             </div>
                             <div class="col-6 text-end">
-                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#tambahJenisPraktikum" aria-expanded="false" aria-controls="tambahJenisPraktikum">
-                                    <i class="fas fa-user-plus"></i>
+                                <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#tambahJenisPraktikum" aria-expanded="false" aria-controls="tambahJenisPraktikum">
+                                    <i class="fas fa-plus"></i>
                                     <span class="border-end mx-2"></span>
                                     Tambah
                                 </button>
                             </div>
                         </div>
                         <div class="collapse my-4" id="tambahJenisPraktikum">
-                            <div class="card card-body d-flex justify-content-end">
+                            <div class="card card-body">
                                 <form action="{{ route('Save Jenis Praktikum') }}" method="POST" class="needs-validation my-auto" novalidate>
                                     @csrf
-                                    <div class="form-group form-group-sm row">
+                                    <div class="form-group row">
                                         <label for="nama_praktikum" class="col-sm-12 col-md-2 col-form-label">Nama Praktikum<span class="text-danger">*</span></label>
                                         <div class="col-sm-12 col-md-10">
                                             <div class="input-group my-auto">
@@ -78,7 +78,7 @@
                                                 </div>
                                             @else
                                                 <div class="invalid-feedback">
-                                                    Semester wajib Dipilih
+                                                    Semester wajib dipilih
                                                 </div>
                                             @enderror
                                         </div>
@@ -100,7 +100,7 @@
                                                 </div>
                                             @else
                                                 <div class="invalid-feedback">
-                                                    Akun Admin Wajib Dipilih
+                                                    Konsentrasi wajib dipilih
                                                 </div>
                                             @enderror
                                         </div>

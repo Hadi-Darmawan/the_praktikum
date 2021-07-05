@@ -1,6 +1,6 @@
 @extends('layouts/admin-layout')
 
-@section('title', 'Detail Nilai Praktikum')
+@section('title', 'Praktikum | Detail Nilai')
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -9,12 +9,12 @@
 
 @section('content')  
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h3 col-lg-auto text-center text-md-start">Praktikum</h1>
-        <div class="col-auto ml-auto text-right mt-n1">
-            <nav aria-label="breadcrumb text-center">
+        <h3 class="col-lg-auto text-center text-md-start">Praktikum</h3>
+        <div class="col-auto ml-auto text-right mt-n1 my-auto">
+            <nav aria-label="breadcrumb text-center my-auto">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('All Nilai') }}">Nilai</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Nilai praktikum</li>
+                    <li class="breadcrumb-item active" aria-current="page">Detail nilai</li>
                 </ol>
             </nav>
         </div>
@@ -55,11 +55,7 @@
                 <div class="col-12 mb-5">
                     <div class="card">
                         <div class="card-header ">
-                            <div class="row">
-                                <div class="col-12 my-auto">
-                                    <p class="my-auto">Nilai Praktikum</p>
-                                </div>
-                            </div>
+                            <p class="my-auto">Nilai Praktikum</p>
                         </div>
                         <div class="card-body small">
                             <div class="card-body table-responsive px-0">

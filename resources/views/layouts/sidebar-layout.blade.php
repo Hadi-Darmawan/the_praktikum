@@ -151,9 +151,9 @@
             </li>
             <div class="dropdown-divider bg-light"></div>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a data-bs-toggle="modal" style="cursor: pointer" data-bs-target="#about" class="nav-link">
                     <i class="nav-icon fas fa-info-circle"></i>
-                    <p>Tentang</p>
+                    <p>About</p>
                 </a>
             </li>
         </ul>

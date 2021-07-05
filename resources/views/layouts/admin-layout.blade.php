@@ -41,6 +41,8 @@
             {{-- Footer Start --}}
                 @include('layouts/footer-layout')
             {{-- Footer End --}}
+
+            @include('about')  
         </div>
 
         <!-- jQuery -->

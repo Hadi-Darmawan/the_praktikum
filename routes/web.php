@@ -90,7 +90,7 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
 
 // Praktikum Route
 
-    // Routes for read adna create praktikum
+    // Routes for read & create praktikum
     Route::get('praktikum/all-praktikum', 'Praktikum\PraktikumController@allPraktikum')->name('All Praktikum');
     Route::get('praktikum/add-praktikum', 'Praktikum\PraktikumController@addPraktikum')->name('Add Praktikum');
     Route::post('praktikum/save-praktikum', 'Praktikum\PraktikumController@storePraktikum')->name('Save Praktikum');
@@ -116,17 +116,31 @@ Route::get('dashboard', 'Dashboard\DashboardController@dashboard')->name('Dashbo
 
 // End Route
 
-// Penilaian Route
 
-    Route::get('praktikum/penilaian/all-penilaian', 'Praktikum\PenilaianController@allPenilaian')->name('All Penilaian');
-    Route::post('praktikum/penilaian/add-penilaian', 'Praktikum\PenilaianController@storePenilaian')->name('Add Penilaian');
-    Route::post('praktikum/penilaian/delete-penilaian/{id}', 'Praktikum\PenilaianController@deletePenilaian')->name('Delete Penilaian');
+
+// Data Penilaian Route
+
+    Route::get('praktikum/data-penilaian', 'Praktikum\DataPenilaianController@dataPenilaian')->name('All Data Penilaian');
+    Route::post('praktikum/data-penilaian/add-penilaian', 'Praktikum\DataPenilaianController@storePenilaian')->name('Add Data Penilaian');
+    Route::post('praktikum/data-penilaian/delete-penilaian/{id}', 'Praktikum\DataPenilaianController@deletePenilaian')->name('Delete Penilaian');
 
 // End Route
 
+
+
+// Penilaian Route
+
+    Route::get('praktikum/penilaian', 'Praktikum\PenilaianController@allPenilaian')->name('All Penilaian');
+    Route::get('praktikum/penilaian/{praktikum}', 'Praktikum\PenilaianController@detailPenilaian')->name('Detail Penilaian');
+    Route::post('praktikum/penilaian/add-penilaian/{praktikum}', 'Praktikum\PenilaianController@addPenilaian')->name('Add Penilaian');
+
+// End Route
+
+
+
 // Nilai Route
 
-    Route::get('praktikum/nilai/data-praktikum', 'Praktikum\NilaiController@dataPraktikum')->name('Data Praktikum');
-    Route::get('praktikum/nilai/penilaian/{praktikum}', 'Praktikum\NilaiController@penilaian')->name('Penilaian');
+    Route::get('praktikum/nilai', 'Praktikum\NilaiController@allPenilaian')->name('All Nilai');
+    Route::get('praktikum/nilai/detail/{praktikum}', 'Praktikum\NilaiController@detailNilai')->name('Detail Nilai');
 
 // End Route

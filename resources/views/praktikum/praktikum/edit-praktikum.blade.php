@@ -24,12 +24,11 @@
     </div>
     <div class="container-fluid px-0">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header p-2 d-flex justify-content-center justify-content-lg-start justify-content-sm-start">
                         <ul class="nav nav-pills">
                             <li class="nav-item"><a class="nav-link active" id="tabAsistenPraktikum" href="#dataPraktikum" data-toggle="tab">Data Praktikum</a></li>
-                            <li class="nav-item"><a class="nav-link" id="tabPesertaPraktikum" href="#modulPraktikum" data-toggle="tab">Modul Praktikum</a></li>
                         </ul>
                     </div>
                     <div class="card-body p-0">
@@ -47,6 +46,8 @@
                                                         @foreach ($jenis_praktikum as $data)
                                                             @if ($praktikum->id_jenis_praktikum == $data->id) 
                                                                <option selected value="{{ $data->id }}">{{ $data->nama_praktikum }}</option>
+                                                            @else
+                                                               <option value="{{ $data->id }}">{{ $data->nama_praktikum }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -69,6 +70,8 @@
                                                         @foreach ($dosen as $data)
                                                            @if ($data->nama == $praktikum->dosen_pengampu)
                                                                <option selected value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                            @else
+                                                               <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                                            @endif
                                                         @endforeach
                                                     </select>
@@ -91,6 +94,8 @@
                                                         @foreach ($login as $data)
                                                             @if ($data->detailLogin->nama == $praktikum->ketua_praktikum)
                                                                 <option selected value="{{ $data->id }}">{{ $data->detailLogin->nama }}, {{ $data->detailLogin->nim }}</option>
+                                                            @else
+                                                                <option value="{{ $data->id }}">{{ $data->detailLogin->nama }}, {{ $data->detailLogin->nim }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -132,61 +137,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="modulPraktikum">
-                                <div class="card shadow-none border-0 m-0">
-                                    <div class="card-body">
-                                        <form action="{{ route('Upload Modul Praktikum', $praktikum->id) }}" method="POST" class="form-horizontal needs-validation" enctype="multipart/form-data" novalidate>
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-12 my-auto py-2">
-                                                    <div class="form-group my-auto">
-                                                        <div class="custom-file">
-                                                            <input type="file" name="modul" autocomplete="off" class="custom-file-input @error('modul') is-invalid @enderror" id="fileKTP" autocomplete="off" required>
-                                                            <label class="custom-file-label @error('modul') is-invalid @enderror" style="overflow-y: hidden" for="fileKTP">Unggah file modul</label>
-                                                            @error('modul')
-                                                                <div class="invalid-feedback text-start">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @else
-                                                                <div class="invalid-feedback">
-                                                                    File modul praktikum wajib diunggah
-                                                                </div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 my-auto">
-                                                    @if ($praktikum->modulPraktikum == NULL)
-                                                        <a class="btn btn-primary btn-sm my-3">
-                                                            <i class="fas fa-download"></i>
-                                                            <span class="border-end mx-2"></span>
-                                                            Modul belum diunggah
-                                                        </a>
-                                                    @else
-                                                        <a href="{{ route('Download Modul Praktikum', $praktikum->modulPraktikum->id) }}" target="_blank" class="btn btn-primary btn-sm my-3">
-                                                            <i class="fas fa-download"></i>
-                                                            <span class="border-end mx-2"></span>
-                                                            Download
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                                <div class="col-6 my-auto text-end">
-                                                    <button class="btn btn-success btn-sm my-auto" type="submit">
-                                                        <i class="fas fa-upload"></i>
-                                                        <span class="border-end mx-2"></span>
-                                                        Unggah
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 mt-3 mb-5">
+            {{-- <div class="col-md-12 mt-3 mb-5">
                 <div class="card">
                     <div class="card-header p-2 d-flex justify-content-center justify-content-lg-start justify-content-sm-start">
                         <ul class="nav nav-pills">
@@ -406,7 +361,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <form action="" id="hapus-asisten-praktikum" method="POST" class="d-inline">

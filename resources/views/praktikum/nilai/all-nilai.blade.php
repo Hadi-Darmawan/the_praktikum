@@ -14,19 +14,19 @@
             <nav aria-label="breadcrumb text-center">
                 <ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('Dashboard') }}">The Praktikum</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Nilai praktikum</li>
+                    <li class="breadcrumb-item active" aria-current="page">Nilai</li>
                 </ol>
             </nav>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         <div class="row">
-            <div class="col-12 p-0">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-12 my-auto">
-                                <h3 class="card-title my-auto">Daftar Praktikum</h3>
+                                <h3 class="card-title my-auto">Daftar Riwayat Praktikum</h3>
                             </div>
                         </div>
                     </div>
@@ -47,15 +47,10 @@
                                         <td class="align-middle">Praktikum {{ $data->jenisPraktikum->nama_praktikum ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->tahun ?? '-' }}</td>
                                         <td class="text-center align-middle">
-                                            <a href="{{ route('Detail Praktikum', $data->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-eye"></i>
+                                            <a href="{{ route('Detail Nilai', $data->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-clipboard-check"></i>
                                                 <span class="border-end mx-2"></span>
                                                 Nilai
-                                            </a>
-                                            <a href="{{ route('Penilaian', $data->id) }}" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-clipboard-check"></i>
-                                                <span class="border-end border-dark mx-2"></span>
-                                                Penilaian
                                             </a>
                                         </td>
                                     </tr>

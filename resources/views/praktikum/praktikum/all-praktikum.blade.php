@@ -54,18 +54,18 @@
                                         <td class="align-middle">Praktikum {{ $data->jenisPraktikum->nama_praktikum ?? '-' }}</td>
                                         <td class="align-middle">{{ $data->tahun ?? '-' }}</td>
                                         <td class="text-center align-middle">
-                                            <a href="{{ route('Detail Praktikum', $data->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-eye"></i>
-                                                <span class="border-end mx-2"></span>
-                                                Detail
-                                            </a>
                                             @if ($data->nim_ketua_praktikum == auth()->guard()->user()->detailLogin->nim)
-                                                <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                    <span class="border-end border-dark mx-2"></span>
-                                                    Edit
+                                                <a href="{{ route('Detail Praktikum', $data->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-eye"></i>
+                                                    <span class="border-end mx-2"></span>
+                                                    Detail
                                                 </a>
                                             @endif
+                                            <a href="{{ route('Edit Praktikum', $data->id) }}" class="btn btn-sm btn-warning">
+                                                <i class="fas fa-edit"></i>
+                                                <span class="border-end border-dark mx-2"></span>
+                                                Edit
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

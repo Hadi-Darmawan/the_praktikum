@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Praktikum;
 
 use App\Model\Role;
+use App\Model\Nilai;
+use App\Model\Penilaian;
 use App\Model\Praktikum;
 use App\Model\DetailRole;
 use Illuminate\Http\Request;
@@ -27,6 +29,7 @@ class AnggotaPraktikumController extends Controller
         ]);
 
         $role = Role::where('nama_role', 'Anggota Praktikum')->first();
+        $penilaian = Penilaian::where('id_praktikum', $praktikum->id)->get();
 
         try {
             DB::beginTransaction();
@@ -43,12 +46,22 @@ class AnggotaPraktikumController extends Controller
                         'id_login' => $data,
                         'id_praktikum' => $praktikum->id,
                     ]);
+
+                    foreach ($penilaian as $item) {
+                        Nilai::create([
+                            'id_login' => $data,
+                            'id_praktikum' => $praktikum->id,
+                            'id_penilaian' => $item->id,
+                            'nilai' => 0,
+                        ]);
+                    }
                 }
             DB::commit();
             
             return redirect()->back()->with('success', 'Peserta praktikum berhasil ditambahkan');
         } catch (\Throwable $th) {
             DB::rollback();
+            throw $th;
             return redirect()->back()->with('failed', 'Peserta praktikum gagal ditambahkan');
         }
     }

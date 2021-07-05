@@ -129,7 +129,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('All Penilaian') }}" id="data-penilaian" class="nav-link">
+                            <a href="{{ route('All Data Penilaian') }}" id="data-penilaian" class="nav-link">
                                 <i class="fas fa-tags nav-icon"></i>
                                 <p>Data Penilaian</p>
                             </a>
@@ -141,7 +141,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('Data Praktikum') }}" id="nilai" class="nav-link">
+                            <a href="{{ route('All Nilai') }}" id="nilai" class="nav-link">
                                 <i class="fas fa-clipboard-check nav-icon"></i>
                                 <p>Nilai</p>
                             </a>

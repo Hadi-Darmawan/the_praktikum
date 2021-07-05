@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Praktikum;
 
+use App\Model\Role;
+use App\Model\Nilai;
 use App\Model\Penilaian;
 use App\Model\Praktikum;
+use App\Model\DetailRole;
 use App\Model\NilaiTotal;
 use Illuminate\Http\Request;
-use App\Model\JenisPraktikum;
-use App\Model\KelompokPraktikum;
 use App\Http\Controllers\Controller;
 
 class NilaiController extends Controller
@@ -17,25 +18,26 @@ class NilaiController extends Controller
         $this->middleware('auth');
     }
 
-    public function dataPraktikum()
+    public function allPenilaian()
     {
-        $id_login = auth()->guard()->user()->id;
-        $id_praktikum = KelompokPraktikum::orWhere('id_asisten_praktikum', $id_login)->orWhere('id_peserta_praktikum', $id_login)->select('id_praktikum')->get();
-        $praktikum = Praktikum::whereIn('id', $id_praktikum->toArray())->get();
+        $login_id = auth()->guard()->user()->id;
 
-        return view('praktikum.nilai.data-praktikum', compact('praktikum'));
+        $role = Role::where('nama_role', 'Anggota Praktikum')->first();
+        $user_praktikum_id = DetailRole::where('id_login', $login_id)->where('id_role', $role->id)->select('id_praktikum')->get();
+        
+        $praktikum = Praktikum::whereIn('id', $user_praktikum_id->toArray())->get();
+
+        return view('praktikum.nilai.all-nilai', compact('praktikum'));
     }
 
-    public function penilaian(Praktikum $praktikum)
+    public function detailNilai(Praktikum $praktikum)
     {
-        // $asisten_praktikum = AsistenPraktikum::where('id_praktikum', $praktikum->id)->get();
-        // $kelompok_praktikum = KelompokPraktikum::where('id_praktikum', $praktikum->id)->get();
+        $login_id = auth()->guard()->user()->id;
 
-        // $kelompok_praktikum = KelompokPraktikum::where('id_praktikum', $praktikum->id)->first();
-        
         $penilaian = Penilaian::where('id_praktikum', $praktikum->id)->get();
-        $nilai_total = NilaiTotal::where('id_praktikum', $praktikum->id)->get();
+        $nilai = Nilai::where('id_login', $login_id)->where('id_praktikum', $praktikum->id)->get();
+        $nilai_total = NilaiTotal::where('id_login', $login_id)->where('id_praktikum', $praktikum->id)->get();
 
-        return view('praktikum.nilai.penilaian', compact('praktikum', 'penilaian', 'nilai_total'));
+        return view('praktikum.nilai.detail-nilai', compact('praktikum', 'penilaian', 'nilai', 'nilai_total'));
     }
 }

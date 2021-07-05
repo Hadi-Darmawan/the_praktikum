@@ -19,9 +19,27 @@ class ModulPraktikumController extends Controller
 
     public function uploadModul(Request $request, Praktikum $praktikum)
     {
-        $filename = Upload::uploadFile($request->file('modul'), 'app/modul/');
-        $modulname = $filename;
+        $this->validate($request, [
+            'modul' => 'required|file|mimes:pdf|max:2024',
+        ],
+        [
+            'modul.required' => "Modul praktikum wajib diunggah",
+            'modul.file' => "Modul praktikum harus berupa file pdf",
+            'modul.mimes' => "Modul praktikum harus berupa file pdf",
+            'modul.size' => "Modul praktikum maksimal berukuran 2 MB",
+        ]);
 
+        $modul_praktikum = ModulPraktikum::where('id_praktikum', $praktikum->id)->first();
+
+        if ($modul_praktikum == NULL) {
+            $filename = Upload::uploadFile($request->file('modul'), 'app/modul/');
+            $modulname = $filename;
+        } else {
+            File::delete(storage_path($modul_praktikum->file_modul));
+            $filename = Upload::uploadFile($request->file('modul'), 'app/modul/');
+            $modulname = $filename;
+        }
+        
         try {
             DB::beginTransaction();
                 ModulPraktikum::create([
